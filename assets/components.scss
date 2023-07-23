@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 5rem;
 }
 
 #pill.interactive:not(.active):hover>#pill-slot {
@@ -27,20 +28,24 @@
 
 #pill-slot {
     font-weight: bold;
-    font-size: 3rem;
     color: $color-lightblue-1;
 
-    padding-inline: 1.4rem;
-    padding-block: 0.7rem;
-}
-
-#pill-slot {
     opacity: 0.5;
     transition: opacity ease 0.4s;
 }
 
-#pill-slot>svg {
-    height: 4rem;
-    aspect-ratio: 1/1;
-    padding-right: 0.7rem;
+#pill-slot:not(.icon) {
+    padding-inline: 1.4rem;
+    padding-block: 0.7rem;
+    font-size: 3rem;
+}
+
+#pill-slot.smallerText {
+    font-size: 2rem;
+}
+
+#pill-slot.icon {
+    display: flex;
+    font-size:3.8rem;
+    padding-left: 0.6rem;
 }

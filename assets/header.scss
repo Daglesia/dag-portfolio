@@ -1,0 +1,70 @@
+$header-size: 4rem;
+$subheader-size: 3rem;
+
+#header-component {
+  height: $header-size;
+  position: relative;
+}
+
+#header-component > #span-container {
+  position: relative;
+  overflow: hidden;
+}
+
+#header-component[data-primary="true"] > #span-container {
+  height: $header-size;
+}
+
+#header-component[data-primary="false"] > #span-container {
+  height: $subheader-size;
+}
+
+#header-component > #hr-container {
+  display: flex;
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+}
+
+#header-component[data-primary="true"] > #hr-container > hr {
+  padding: 3px 0;
+  background-color: $color-lightblue-1;
+}
+
+#header-component[data-primary="false"] > #hr-container > hr {
+  padding: 2px 0;
+  background-color: $color-darkblue-1;
+}
+
+#header-component > #hr-container > hr {
+  border: none;
+  border-radius: 4px;
+  margin-block: 0;
+  width: 100%;
+}
+
+#header-component[data-primary="true"] > #span-container > span {
+  font-size: $header-size;
+  padding-block: 0.5rem;
+  color: $color-lightblue-1;
+  line-height: 80%;
+}
+
+#header-component[data-primary="false"] > #span-container > span {
+  font-size: $subheader-size;
+  color: $color-darkblue-1;
+  line-height: 90%;
+}
+
+#header-component > #span-container > span {
+  width: 100%;
+  font-weight: bold;
+  padding-inline: 0.7rem;
+
+  position: absolute;
+}
+
+#header-component > #span-container > .centered {
+  text-align: center;
+}

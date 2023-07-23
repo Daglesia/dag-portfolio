@@ -1,0 +1,17 @@
+@import './keyframes.scss';
+@import './animations.scss';
+
+$color-lightblue-1: #6dd7fd;
+$color-darkblue-1: #57abc9;
+
+$color-dark: #1e1e1e;
+
+:root {
+  font-family: "Jaldi";
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: $color-dark;
+}

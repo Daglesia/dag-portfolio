@@ -1,0 +1,67 @@
+$nav-height: 3rem;
+$border-size: 2px;
+
+#navigation {
+  width: fit-content;
+  height: calc(100% + 4px);
+}
+
+nav {
+  color: #6dd7fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+nav>div {
+  height: $nav-height;
+  aspect-ratio: 1/1;
+  padding-inline: 0.4rem;
+  padding-block: 0.2rem;
+  opacity: 0.5;
+  transition: opacity 0.5s ease-out;
+}
+
+nav> :hover {
+  opacity: 0.7;
+}
+
+nav>.active {
+  opacity: 1;
+}
+
+nav>div>svg {
+  fill: $color-lightblue-1;
+  height: 90%;
+  aspect-ratio: 1/1;
+}
+
+.underlines {
+  width: 100%;
+  position: relative;
+}
+
+.underlines>hr {
+  margin: 0;
+  border-radius: 5px;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.underlines> :not(.active) {
+  border: $border-size solid #6dd7fd80;
+  width: calc(100% - $border-size);
+}
+
+.underlines>.active {
+  border: $border-size solid $color-lightblue-1;
+  transition: all 0.3s ease-out;
+  z-index: 50;
+
+  position: absolute;
+}
+
+.underlines>.delayed {
+  transition: all 0.4s ease-in-out;
+}

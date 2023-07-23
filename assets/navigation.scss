@@ -18,7 +18,6 @@ nav>div {
   height: $nav-height;
   aspect-ratio: 1/1;
   padding-inline: 0.4rem;
-  padding-block: 0.2rem;
   opacity: 0.5;
   transition: opacity 0.5s ease-out;
 }
@@ -31,10 +30,11 @@ nav>.active {
   opacity: 1;
 }
 
-nav>div>svg {
+nav>div>span {
   fill: $color-lightblue-1;
-  height: 90%;
-  aspect-ratio: 1/1;
+  height: 90% !important;
+  width: 90% !important;
+  aspect-ratio: 1/1 !important;
 }
 
 .underlines {

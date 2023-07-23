@@ -1,21 +1,35 @@
 <template>
   <div id="about-view">
     <header-component primary title="About" :hidden="hidden" />
-    <icon-navigation v-model="activeElement" :hidden="hidden" />
+    <icon-navigation v-model="activeElement" :menuItems="menuItems" :hidden="hidden" />
     <NuxtPage />
   </div>
 </template>
 
 <script setup lang="ts">
+import { NavigationMenuItem } from '@/types/props';
 const route = useRoute();
 const hidden = ref(true);
 
-const routerPaths = ['/about/work', '/about/skills', '/about/hobbies'];
+const menuItems = <NavigationMenuItem[]>[
+	{
+		path: '/about/work',
+		icon: 'fa6-solid:circle-user',
+	},
+	{
+		path: '/about/skills',
+		icon: 'fa6-solid:brain',
+	},
+	{
+		path: '/about/hobbies',
+		icon: 'fa6-solid:football',
+	}
+];
 
 const activeElement = ref(0);
 
 watch(activeElement, (newValue) => {
-	navigateTo(routerPaths[newValue]);
+	navigateTo(menuItems[newValue].path);
 });
 
 onMounted(() => {

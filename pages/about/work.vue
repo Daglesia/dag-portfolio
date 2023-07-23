@@ -43,7 +43,7 @@ onMounted(()=> {
 }
 
 #header-component {
-  padding-top: 2rem;
+  padding-top: 1rem;
   padding-right: 3rem;
 }
 </style>

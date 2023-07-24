@@ -1,5 +1,5 @@
-$header-size: 4rem;
-$subheader-size: 3rem;
+$header-size: 5rem;
+$subheader-size: 4rem;
 
 #header-component {
   height: $header-size;
@@ -28,12 +28,12 @@ $subheader-size: 3rem;
 }
 
 #header-component[data-primary="true"] > #hr-container > hr {
-  padding: 3px 0;
+  padding: 4px 0;
   background-color: $color-lightblue-1;
 }
 
 #header-component[data-primary="false"] > #hr-container > hr {
-  padding: 2px 0;
+  padding: 3px 0;
   background-color: $color-darkblue-1;
 }
 

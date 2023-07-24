@@ -1,16 +1,13 @@
 <template>
   <div id="work-page">
     <div id="work-selector">
-    <header-component 
-      :hidden="hidden"
-      title="Work experience"
-    />
-    <pill-group v-model="activeElement" :hidden="hidden">
-      
-    </pill-group>  
+      <header-component :hidden="hidden" title="Work experience" />
+      <pill-group v-model="activeElement" :hidden="hidden" :items="items">
+
+      </pill-group>
     </div>
-    <div id="work-selected" v-show="activeElement !== null">
-      <work-description />
+    <div id="work-selected">
+      <NuxtPage />
     </div>
   </div>
 </template>
@@ -19,12 +16,21 @@
 const hidden = ref(true);
 const activeElement = ref<number | null>(null);
 
-const activeElementChangeHandler = (index: number) => {
-  console.log('element', index);
-}
+const items = [{
+  name: 'WithSecure',
+  date: '2y',
+},
+{
+  name: 'F-Secure',
+  date: '2y',
+}];
 
-onMounted(()=> {
-	hidden.value = false;
+watch(activeElement, (newValue) => {
+  navigateTo('/about/work/' + newValue);
+});
+
+onMounted(() => {
+  hidden.value = false;
 });
 </script>
 
@@ -43,7 +49,7 @@ onMounted(()=> {
 }
 
 #header-component {
-  padding-top: 1rem;
+  padding-top: 1.5rem;
   padding-right: 3rem;
 }
 </style>

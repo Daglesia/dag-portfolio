@@ -34,9 +34,8 @@ watch(activeElement, (newValue) => {
 
 onMounted(() => {
 	hidden.value = false;
-	console.log(route.path);
 	if (route.path.split('/').length === 2) {
-		navigateTo(routerPaths[activeElement.value]);
+		navigateTo(menuItems[activeElement.value].path);
 	}
 });
 </script>
@@ -54,5 +53,6 @@ onMounted(() => {
 
 #navigation {
   padding-left: 2rem;
+  padding-top: 0.5rem;
 }
 </style>

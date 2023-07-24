@@ -1,23 +1,16 @@
 <!-- eslint-disable no-undef -->
 <template>
   <div id="pill-group">
-    <pill-component :hidden="hidden" :interactive="true" :active="modelValue === 0"
-      @click="() => activeElementHandler(0)">
+    <pill-component :hidden="hidden" :interactive="true"
+      v-for="(item, index) in items"
+      :key="item.name"
+      :active="modelValue === index"
+      @click="() => activeElementHandler(index)">
       <template #default>
-        <span>Dupa</span>
+        <span>{{item.name}}</span>
       </template>
       <template #right>
-        <span>2y</span>
-      </template>
-    </pill-component>
-
-    <pill-component :hidden="hidden" :interactive="true" :active="modelValue === 1"
-      @click="() => activeElementHandler(1)">
-      <template #default>
-        <span>Jasia</span>
-      </template>
-      <template #right>
-        <span>2y</span>
+        <span>{{item.date}}</span>
       </template>
     </pill-component>
   </div>
@@ -27,14 +20,15 @@
 
 defineProps<{
   hidden: boolean;
-  modelValue: number | null;
+  modelValue: number | null | string;
+  items: Object;
 }>();
 
 const emit = defineEmits<{
-  (event: 'update:modelValue', index: number): void;
+  (event: 'update:modelValue', index: string): void;
 }>();
 
-const activeElementHandler = (index: number) => {
+const activeElementHandler = (index: string) => {
   emit('update:modelValue', index);
 };
 
@@ -44,7 +38,8 @@ const activeElementHandler = (index: number) => {
 #pill-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
+  padding-top: 1rem;
 }
 
 #pill {

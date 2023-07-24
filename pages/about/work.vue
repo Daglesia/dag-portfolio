@@ -17,12 +17,12 @@ const hidden = ref(true);
 const activeElement = ref<number | null>(null);
 
 const items = [{
-  name: 'WithSecure',
-  date: '2y',
+  primary: 'WithSecure',
+  secondary: '2y',
 },
 {
-  name: 'F-Secure',
-  date: '2y',
+  primary: 'F-Secure',
+  secondary: '2y',
 }];
 
 watch(activeElement, (newValue) => {

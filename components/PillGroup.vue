@@ -1,16 +1,13 @@
 <!-- eslint-disable no-undef -->
 <template>
   <div id="pill-group">
-    <pill-component :hidden="hidden" :interactive="true"
-      v-for="(item, index) in items"
-      :key="item.name"
-      :active="modelValue === index"
-      @click="() => activeElementHandler(index)">
+    <pill-component :hidden="hidden" :interactive="true" v-for="(item, index) in items" :key="item.name"
+      :active="modelValue === index" @click="() => activeElementHandler(index)">
       <template #default>
-        <span>{{item.name}}</span>
+        <span>{{ item.primary }}</span>
       </template>
-      <template #right>
-        <span>{{item.date}}</span>
+      <template #right v-if="item.secondary">
+        <span>{{ item.secondary }}</span>
       </template>
     </pill-component>
   </div>

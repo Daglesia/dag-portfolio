@@ -1,8 +1,8 @@
 <!-- eslint-disable no-undef -->
 <template>
   <div id="pill-group">
-    <pill-component :hidden="hidden" :interactive="true" v-for="(item, index) in items" :key="item.name"
-      :active="modelValue === index" @click="() => activeElementHandler(index)">
+    <pill-component :hidden="hidden" :interactive="true" v-for="(item, index) in items" :key="index"
+      :active="modelValue === index" @click="() => activeElementHandler(Number(index))">
       <template #default>
         <span>{{ item.primary }}</span>
       </template>
@@ -14,18 +14,20 @@
 </template>
 
 <script setup lang="ts">
+import { PillGroupItem } from 'types/props';
+
 
 defineProps<{
   hidden: boolean;
   modelValue: number | null | string;
-  items: Object;
+  items: PillGroupItem[];
 }>();
 
 const emit = defineEmits<{
-  (event: 'update:modelValue', index: string): void;
+  (event: 'update:modelValue', index: number): void;
 }>();
 
-const activeElementHandler = (index: string) => {
+const activeElementHandler = (index: number) => {
   emit('update:modelValue', index);
 };
 

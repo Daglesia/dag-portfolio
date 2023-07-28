@@ -16,33 +16,33 @@ const route = useRoute();
 const hidden = ref(true);
 
 const menuItems = <NavigationMenuItem[]>[
-  {
-    path: "/about/work",
-    icon: "fa6-solid:circle-user",
-  },
-  {
-    path: "/about/skills",
-    icon: "fa6-solid:brain",
-  },
-  {
-    path: "/about/hobbies",
-    icon: "fa6-solid:football",
-  },
+    {
+        path: "/about/work",
+        icon: "fa6-solid:circle-user",
+    },
+    {
+        path: "/about/skills",
+        icon: "fa6-solid:brain",
+    },
+    {
+        path: "/about/hobbies",
+        icon: "fa6-solid:football",
+    },
 ];
 
 const activeElement = ref(
-  menuItems.findIndex((item) => useRoute().fullPath.includes(item.path)),
+    menuItems.findIndex((item) => useRoute().fullPath.includes(item.path)),
 );
 
 watch(activeElement, (newValue) => {
-  navigateTo(menuItems[newValue].path);
+    navigateTo(menuItems[newValue].path);
 });
-
+  
 onMounted(() => {
-  hidden.value = false;
-  if (route.path.split("/").length === 2) {
-    navigateTo(menuItems[activeElement.value].path);
-  }
+    hidden.value = false;
+    if (route.path.split("/").length === 2) {
+        navigateTo(menuItems[activeElement.value].path);
+    }
 });
 </script>
 

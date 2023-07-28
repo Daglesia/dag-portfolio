@@ -29,8 +29,6 @@ import { getFormattedDuration, getFormattedStartEndFrame } from '@/utils/dateUti
   currentItem: WorkDataItem;
 }>();
 
-console.log(props.currentItem, 'cxzcknmk')
-
 const duration = computed(() => getFormattedDuration(props.currentItem.startDate, props.currentItem?.endDate, false));
 const timeframe = computed(() => getFormattedStartEndFrame(props.currentItem.startDate, props.currentItem?.endDate));
 

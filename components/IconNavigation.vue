@@ -29,8 +29,8 @@ const left = ref('0px');
 const width = ref('0px');
 
 const setNavigationLine = (newLeft: number, newWidth: number) => {
-	left.value = `${newLeft}px`;
-	width.value = `${newWidth}px`;
+  left.value = `${newLeft}px`;
+  width.value = `${newWidth}px`;
 };
 
 const props = defineProps<{
@@ -40,22 +40,20 @@ const props = defineProps<{
 }>();
 
 watch(startingPoint, (newValue) => {
-	if (newValue) {
-		const item = newValue[props.modelValue] as HTMLElement;
-		setNavigationLine(item.clientLeft, item.clientWidth);
-	}
+  if (newValue) {
+    const item = newValue[props.modelValue] as HTMLElement;
+    setNavigationLine(item.offsetLeft, item.offsetWidth);
+  }
 });
 
 const handleClick = (event: MouseEvent, index: number) => {
-	let element = event?.target as HTMLElement;
-	while (element.nodeName !== 'DIV') {
-		element = element.parentNode as HTMLElement;
-	}
-	setNavigationLine(element.offsetLeft, element.offsetWidth);
-	emit('update:modelValue', index);
+  let element = event?.target as HTMLElement;
+  while (element.nodeName !== 'DIV') {
+    element = element.parentNode as HTMLElement;
+  }
+  setNavigationLine(element.offsetLeft, element.offsetWidth);
+  emit('update:modelValue', index);
 };
-
-console.log(useSlots(), 'dazz');
 </script>
 
 <style scoped lang="scss">

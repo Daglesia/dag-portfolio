@@ -1,20 +1,20 @@
 <template>
     <div id="work-description">
-      <header-component :hidden="hidden" title="Something" />
+      <header-component :hidden="hidden" :title="currentItem.title" />
       <div id="work-pills">
         <pill-component icon="fa6-solid:clock" :hidden="hidden">
           <template #default>
-            <span>2 years</span>
+            <span>{{ duration }}</span>
           </template>
         </pill-component>
         <pill-component icon="fa6-solid:calendar" :hidden="hidden">
           <template #default>
-            <span>03.21 - 05.23</span>
+            <span>{{ timeframe }}</span>
           </template>
         </pill-component>
         <pill-component icon="fa6-solid:suitcase" :hidden="hidden">
           <template #default>
-            <span>Software engineer</span>
+            <span>{{ currentItem.position }}</span>
           </template>
         </pill-component>
       </div>
@@ -22,6 +22,19 @@
   </template>
   
   <script setup lang="ts">
+import { WorkDataItem } from 'types/props';
+import { getFormattedDuration, getFormattedStartEndFrame } from '@/utils/dateUtils';
+
+  const props = defineProps<{
+  currentItem: WorkDataItem;
+}>();
+
+console.log(props.currentItem, 'cxzcknmk')
+
+const duration = computed(() => getFormattedDuration(props.currentItem.startDate, props.currentItem?.endDate, false));
+const timeframe = computed(() => getFormattedStartEndFrame(props.currentItem.startDate, props.currentItem?.endDate));
+
+
   const hidden = ref(true);
   
   onMounted(() => {

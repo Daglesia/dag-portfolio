@@ -5,7 +5,7 @@
         <IconCSS v-if="icon" :name="icon" />
         <slot v-else />
       </div>
-      <div id="pill-slot" :class="{ smallerText: !!icon }">
+      <div id="pill-slot" class="smallerText">
         <slot :name="icon ? 'default' : 'right'" />
       </div>
     </div>

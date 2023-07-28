@@ -26,7 +26,7 @@ const menuItems = <NavigationMenuItem[]>[
 	}
 ];
 
-const activeElement = ref(0);
+const activeElement = ref(menuItems.findIndex(item => useRoute().fullPath.includes(item.path)));
 
 watch(activeElement, (newValue) => {
 	navigateTo(menuItems[newValue].path);

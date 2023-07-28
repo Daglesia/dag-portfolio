@@ -2,9 +2,7 @@
   <div id="hobbies-page">
     <div id="hobbies-selector">
       <header-component :hidden="hidden" title="Hobbies and interests" />
-      <suspense>
         <pill-group v-model="activeElement" :hidden="hidden" :items="pillGroups" />
-      </suspense>
     </div>
     <div id="hobby-selected">
       <NuxtPage :currentItem="currentItem" />

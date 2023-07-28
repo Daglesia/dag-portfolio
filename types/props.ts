@@ -9,6 +9,13 @@ export interface HobbyDataItem {
     items: string[];
 }
 
+export interface WorkDataItem {
+    title: string;
+    position: string;
+    startDate: string;
+    endDate?: string;
+}
+
 export interface PillGroupItem {
     primary: string;
     secondary?: string;

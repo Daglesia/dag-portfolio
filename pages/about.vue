@@ -41,7 +41,7 @@ watch(activeElement, (newValue) => {
 onMounted(() => {
     hidden.value = false;
     if (route.path.split("/").length === 2) {
-        navigateTo(menuItems[activeElement.value].path);
+        activeElement.value = 0;
     }
 });
 </script>

@@ -13,7 +13,7 @@
         <IconCSS v-if="icon" :name="icon" />
         <slot v-else />
       </div>
-      <div id="pill-slot" class="smallerText">
+      <div id="pill-slot" class="smallerText" v-if="icon || !isSingleItem">
         <slot :name="icon ? 'default' : 'right'" />
       </div>
     </div>

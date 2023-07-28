@@ -5,9 +5,9 @@
 </template>
 
 <script setup lang="ts">
-const hidden = ref(false);
+// const hidden = ref(false);
 
-const activeElement = ref(0);
+// const activeElement = ref(0);
 
 // onMounted(()=>{
 //     navigateTo('about/work');

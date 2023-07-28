@@ -1,1 +1,1 @@
-<template>zzz</template>
+<template><div>Placeholder text</div></template>;

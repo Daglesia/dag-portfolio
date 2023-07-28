@@ -14,7 +14,7 @@ nav {
   position: relative;
 }
 
-nav>div {
+nav > div {
   height: $nav-height;
   aspect-ratio: 1/1;
   padding-inline: 0.4rem;
@@ -22,15 +22,15 @@ nav>div {
   transition: opacity 0.5s ease-out;
 }
 
-nav> :hover {
+nav > :hover {
   opacity: 0.7;
 }
 
-nav>.active {
+nav > .active {
   opacity: 1;
 }
 
-nav>div>span {
+nav > div > span {
   fill: $color-lightblue-1;
   height: 90% !important;
   width: 90% !important;
@@ -42,19 +42,19 @@ nav>div>span {
   position: relative;
 }
 
-.underlines>hr {
+.underlines > hr {
   margin: 0;
   border-radius: 5px;
   position: absolute;
   box-sizing: border-box;
 }
 
-.underlines> :not(.active) {
+.underlines > :not(.active) {
   border: $border-size solid #6dd7fd80;
   width: calc(100% - $border-size);
 }
 
-.underlines>.active {
+.underlines > .active {
   border: $border-size solid $color-lightblue-1;
   transition: all 0.3s ease-out;
   z-index: 50;
@@ -62,6 +62,6 @@ nav>div>span {
   position: absolute;
 }
 
-.underlines>.delayed {
+.underlines > .delayed {
   transition: all 0.4s ease-in-out;
 }

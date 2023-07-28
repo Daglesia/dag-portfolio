@@ -1,6 +1,14 @@
 <template>
   <Transition name="mario-pill" appear>
-    <div id="pill" v-if="!hidden" :class="{ centered: isSingleItem, active: active, interactive: interactive }">
+    <div
+      v-if="!hidden"
+      id="pill"
+      :class="{
+        centered: isSingleItem,
+        active: active,
+        interactive: interactive,
+      }"
+    >
       <div id="pill-slot" :class="{ icon: !!icon }">
         <IconCSS v-if="icon" :name="icon" />
         <slot v-else />
@@ -11,15 +19,15 @@
     </div>
   </Transition>
 </template>
-  
+
 <script setup lang="ts">
-import { useSlots } from 'vue';
+import { useSlots } from "vue";
 
 const props = defineProps<{
-  hidden: boolean
-  active?: boolean
-  interactive?: boolean
-  icon?: string
+  hidden: boolean;
+  active?: boolean;
+  interactive?: boolean;
+  icon?: string;
 }>();
 
 const slots = useSlots();

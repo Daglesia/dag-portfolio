@@ -2,36 +2,44 @@
   <div id="work-page">
     <div id="work-selector">
       <header-component :hidden="hidden" title="Work experience" />
-      <pill-group v-model="activeElement" :hidden="hidden" :items="pillGroups">
-
-      </pill-group>
+      <pill-group v-model="activeElement" :hidden="hidden" :items="pillGroups" />
     </div>
     <div id="work-selected">
-      <NuxtPage :currentItem="currentItem" />
+      <NuxtPage :current-item="currentItem" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { PillGroupItem, WorkDataItem } from 'types/props';
-import { getFormattedDuration } from '@/utils/dateUtils';
+import { PillGroupItem, WorkDataItem } from "types/props";
+import { getFormattedDuration } from "@/utils/dateUtils";
 
 const route = useRoute();
 
 const hidden = ref(true);
 const activeElement = ref<number>(Number(route.params.workid));
 
-const { data } = await useFetch<WorkDataItem[]>('/api/work');
+const { data } = await useFetch<WorkDataItem[]>("/api/work");
 
-const pillGroups = computed(() => data.value?.map(item => { return { primary: item.title, secondary: getFormattedDuration(item.startDate, item.endDate, true) } as PillGroupItem; }) ?? [] as PillGroupItem[]);
-const currentItem = computed(() => data.value ? data.value[activeElement.value] : []);
+const pillGroups = computed(
+    () =>
+        data.value?.map((item) => {
+            return {
+                primary: item.title,
+                secondary: getFormattedDuration(item.startDate, item.endDate, true)
+            } as PillGroupItem;
+        }) ?? ([] as PillGroupItem[])
+);
+const currentItem = computed(() =>
+    data.value ? data.value[activeElement.value] : []
+);
 
 watch(activeElement, (newValue) => {
-  navigateTo('/about/work/' + newValue);
+    navigateTo("/about/work/" + newValue);
 });
 
 onMounted(() => {
-  hidden.value = false;
+    hidden.value = false;
 });
 </script>
 

@@ -7,25 +7,22 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore --fix .",
-    "lint:prettier": "prettier --fix .",
-    "lint": "yarn lint:js && yarn lint:prettier",
-    "lintfix": "prettier --write --list-different . && yarn lint:js --fix"
+    "lint": "eslint --ext .ts,.js,.vue --fix ."
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
     "@types/node": "^18.16.19",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^8.44.0",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.45.0",
     "eslint-plugin-vue": "^9.15.1",
     "nuxt": "^3.6.2",
     "nuxt-icon": "^0.4.2",
     "prettier": "^3.0.0",
     "sass": "^1.63.6",
     "sass-loader": "^13.3.2",
-    "typescript": "^5.1.6",
-    "vue-eslint-parser": "^9.3.1"
+    "typescript": "^5.1.6"
   }
 }

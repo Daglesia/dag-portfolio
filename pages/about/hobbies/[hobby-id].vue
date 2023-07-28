@@ -1,12 +1,16 @@
 <template>
   <div id="hobby-description">
     <header-component :hidden="hidden" :title="currentItem.title" />
-    <list-component :hidden="hidden" :title="currentItem.subtitle" :items="data"/>
+    <list-component
+      :hidden="hidden"
+      :title="currentItem.subtitle"
+      :items="data"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { HobbyDataItem } from '@/types/props';
+import { HobbyDataItem } from "@/types/props";
 
 const hidden = ref(true);
 
@@ -17,7 +21,7 @@ const props = defineProps<{
 const data = computed(() => props?.currentItem.items);
 
 onMounted(() => {
-  hidden.value = false;
+    hidden.value = false;
 });
 </script>
 
@@ -30,5 +34,4 @@ onMounted(() => {
 #list-component {
   margin-left: 1rem;
 }
-
 </style>

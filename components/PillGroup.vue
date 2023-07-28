@@ -1,12 +1,18 @@
 <!-- eslint-disable no-undef -->
 <template>
   <div id="pill-group">
-    <pill-component :hidden="hidden" :interactive="true" v-for="(item, index) in items" :key="index"
-      :active="modelValue === index" @click="() => activeElementHandler(Number(index))">
+    <pill-component
+      v-for="(item, index) in items"
+      :key="index"
+      :hidden="hidden"
+      :interactive="true"
+      :active="modelValue === index"
+      @click="() => activeElementHandler(Number(index))"
+    >
       <template #default>
         <span>{{ item.primary }}</span>
       </template>
-      <template #right v-if="item.secondary">
+      <template v-if="item.secondary" #right>
         <span>{{ item.secondary }}</span>
       </template>
     </pill-component>
@@ -14,8 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { PillGroupItem } from 'types/props';
-
+import { PillGroupItem } from "types/props";
 
 defineProps<{
   hidden: boolean;
@@ -23,14 +28,11 @@ defineProps<{
   items: PillGroupItem[];
 }>();
 
-const emit = defineEmits<{
-  (event: 'update:modelValue', index: number): void;
-}>();
+const emit = defineEmits<{(event: "update:modelValue", index: number): void;}>();
 
 const activeElementHandler = (index: number) => {
-  emit('update:modelValue', index);
+    emit("update:modelValue", index);
 };
-
 </script>
 
 <style lang="scss" scoped>

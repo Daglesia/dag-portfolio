@@ -2,35 +2,46 @@
   <div id="hobbies-page">
     <div id="hobbies-selector">
       <header-component :hidden="hidden" title="Hobbies and interests" />
-        <pill-group v-model="activeElement" :hidden="hidden" :items="pillGroups" />
+      <pill-group
+        v-model="activeElement"
+        :hidden="hidden"
+        :items="pillGroups"
+      />
     </div>
     <div id="hobby-selected">
-      <NuxtPage :currentItem="currentItem" />
+      <NuxtPage :current-item="currentItem" />
     </div>
   </div>
 </template>
-  
+
 <script setup lang="ts">
-import { HobbyDataItem, PillGroupItem } from '@/types/props';
+import { HobbyDataItem, PillGroupItem } from "@/types/props";
 
 const route = useRoute();
 
 const hidden = ref(true);
 const activeElement = ref<number>(Number(route.params.hobbyid));
 
-const { data } = await useFetch<HobbyDataItem[]>('/api/hobbies');
-const pillGroups = computed(() => data.value?.map(item => { return { primary: item.title } as PillGroupItem; }) ?? [] as PillGroupItem[]);
-const currentItem = computed(() => data.value ? data.value[activeElement.value] : []);
+const { data } = await useFetch<HobbyDataItem[]>("/api/hobbies");
+const pillGroups = computed(
+    () =>
+        data.value?.map((item) => {
+            return { primary: item.title } as PillGroupItem;
+        }) ?? ([] as PillGroupItem[])
+);
+const currentItem = computed(() =>
+    data.value ? data.value[activeElement.value] : []
+);
 
 watch(activeElement, (newValue) => {
-  navigateTo('/about/hobbies/' + newValue);
+    navigateTo("/about/hobbies/" + newValue);
 });
 
-onMounted(async () => {
-  hidden.value = false;
+onMounted(() => {
+    hidden.value = false;
 });
 </script>
-  
+
 <style lang="scss" scoped>
 #hobbies-page {
   padding-left: 2rem;

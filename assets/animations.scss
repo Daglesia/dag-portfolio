@@ -1,33 +1,33 @@
 .mario-pill-enter-active {
-    opacity: 0;
-    animation: slide-up-low 1.0s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  opacity: 0;
+  animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
 .mario-pill-leave-active {
-    animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
 .mario-span-enter-active {
-    animation: slide-up 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-up 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
 .mario-span-leave-active {
-    animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
 .mario-hr-enter-active {
-    animation: span-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: span-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
 .mario-hr-leave-active {
-    animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
 .mario-nav-enter-active {
-    opacity: 0;
-    animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  opacity: 0;
+  animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
 .mario-nav-leave-active {
-    animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }

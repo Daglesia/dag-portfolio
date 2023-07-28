@@ -1,14 +1,14 @@
 <template>
-    <div id="list-component">
-        <p v-if="title">
-            {{ title }}
-        </p>
-        <ul>
-            <li v-for="item in items" :key="item">
-                {{ item }}
-            </li>
-        </ul>
-    </div>
+  <div id="list-component">
+    <p v-if="title">
+      {{ title }}
+    </p>
+    <ul>
+      <li v-for="item in items" :key="item">
+        {{ item }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script setup lang="ts">

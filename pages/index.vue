@@ -1,6 +1,9 @@
 <template>
-  <NuxtLink to="about">
+  <NuxtLink to="/about/">
     Cyckckckck
+  </NuxtLink>
+  <NuxtLink to="/contact/">
+    Cyckckckck2
   </NuxtLink>
 </template>
 

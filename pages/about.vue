@@ -12,7 +12,11 @@
 
 <script setup lang="ts">
 import { NavigationMenuItem } from "@/types/props";
-const route = useRoute();
+
+definePageMeta({
+    middleware: "about"
+});
+
 const hidden = ref(true);
 
 const menuItems = <NavigationMenuItem[]>[
@@ -30,9 +34,7 @@ const menuItems = <NavigationMenuItem[]>[
     },
 ];
 
-const activeElement = ref(
-    menuItems.findIndex((item) => useRoute().fullPath.includes(item.path)),
-);
+const activeElement = ref(0);
 
 watch(activeElement, (newValue) => {
     navigateTo(menuItems[newValue].path);
@@ -40,9 +42,6 @@ watch(activeElement, (newValue) => {
   
 onMounted(() => {
     hidden.value = false;
-    if (route.path.split("/").length === 2) {
-        activeElement.value = 0;
-    }
 });
 </script>
 

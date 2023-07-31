@@ -29,6 +29,7 @@ export interface Skill {
 export interface SkillDataItem {
   startDate: string;
   skill: Skill;
+  name: string;
 }
 
 export interface SkillDataResponse {

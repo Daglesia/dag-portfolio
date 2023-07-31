@@ -126,6 +126,10 @@
   opacity: 0.7;
 }
 
+#padded-icon.interactive {
+  cursor: pointer;
+}
+
 #padded-icon.active > span {
   opacity: 1;
 }

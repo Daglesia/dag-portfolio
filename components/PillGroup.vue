@@ -1,4 +1,3 @@
-<!-- eslint-disable no-undef -->
 <template>
   <div id="pill-group">
     <pill-component
@@ -24,7 +23,7 @@ import { PillGroupItem } from "types/props";
 
 defineProps<{
   hidden: boolean;
-  modelValue: number | null | string;
+  modelValue: number | null;
   items: PillGroupItem[];
 }>();
 

@@ -104,3 +104,28 @@
 #menu-icon:hover > span {
   color: $color-lightblue-1;
 }
+
+#padded-icon {
+  color: $color-lightblue-1;
+  font-size: 4rem;
+  padding: 1rem;
+  background: rgba(109, 215, 253, 0.1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  border-radius: 1.5rem;
+}
+
+#padded-icon > span {
+  opacity: 0.5;
+  transition: opacity 0.4s;
+}
+
+#padded-icon.interactive:not(.active):hover > span {
+  opacity: 0.7;
+}
+
+#padded-icon.active > span {
+  opacity: 1;
+}

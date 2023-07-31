@@ -12,29 +12,32 @@
 
 <script setup lang="ts">
 import { NavigationMenuItem } from "@/types/props";
+import { PATHS } from "@/assets/constants/paths";
+import { ICONS } from "@/assets/constants/icons";
 
 definePageMeta({
     middleware: "about"
 });
 
 const hidden = ref(true);
+const route = useRoute();
 
 const menuItems = <NavigationMenuItem[]>[
     {
-        path: "/about/work",
-        icon: "fa6-solid:circle-user",
+        path: PATHS.about.work,
+        icon: ICONS.work,
     },
     {
-        path: "/about/skills",
-        icon: "fa6-solid:brain",
+        path: PATHS.about.skills,
+        icon: ICONS.skills,
     },
     {
-        path: "/about/hobbies",
-        icon: "fa6-solid:football",
+        path: PATHS.about.hobbies,
+        icon: ICONS.hobbies,
     },
 ];
 
-const activeElement = ref(0);
+const activeElement = ref(menuItems.findIndex(item => route.path.includes(item.path)));
 
 watch(activeElement, (newValue) => {
     navigateTo(menuItems[newValue].path);

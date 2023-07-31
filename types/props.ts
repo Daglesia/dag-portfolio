@@ -20,3 +20,18 @@ export interface PillGroupItem {
   primary: string;
   secondary?: string;
 }
+
+export interface Skill {
+  icon: string;
+  displayName: string;
+}
+
+export interface SkillDataItem {
+  startDate: string;
+  skill: Skill;
+}
+
+export interface SkillDataResponse {
+  startDate: string;
+  name: string;
+}

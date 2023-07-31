@@ -20,6 +20,8 @@ nav > div {
   padding-inline: 0.4rem;
   opacity: 0.5;
   transition: opacity 0.5s ease-out;
+  display: flex;
+  justify-content: center;
 }
 
 nav > :hover {

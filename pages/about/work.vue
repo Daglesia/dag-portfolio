@@ -11,7 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import { PillGroupItem, WorkDataItem } from "types/props";
+import { PillGroupItem, WorkDataItem } from "@/types/props";
+import { PATHS } from "@/assets/constants/paths";
 import { getFormattedDuration } from "@/utils/dateUtils";
 
 const route = useRoute();
@@ -35,7 +36,7 @@ const currentItem = computed(() =>
 );
 
 watch(activeElement, (newValue) => {
-    navigateTo("/about/work/" + newValue);
+    navigateTo(`${PATHS.about.work}/${newValue}`);
 });
 
 onMounted(() => {

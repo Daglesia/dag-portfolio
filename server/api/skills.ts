@@ -8,11 +8,15 @@ export default defineEventHandler(() => {
         startDate: new Date(2021, 2, 15),
     },
     {
-        name: "vuejs",
+        name: "sass",
         startDate: new Date(2021, 2, 15),
     },
     {
-        name: "vuejs",
+        name: "css",
         startDate: new Date(2021, 2, 15),
-    }];
+    },
+    {
+        name: "typescript",
+        startDate: new Date(2021, 2, 15),
+    },];
 });

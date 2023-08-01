@@ -45,10 +45,12 @@ const currentItem = computed(() => skillsetArray ? skillsetArray[activeElement.v
 #skills-selector {
     width: 40vw;
     padding-left: 2rem;
+    padding-right: 3rem;
 }
 
 #skill-selected {
     width: 40vw;
+    padding-right: 3rem;
 }
 
 #skills-group {
@@ -56,6 +58,7 @@ const currentItem = computed(() => skillsetArray ? skillsetArray[activeElement.v
     flex-wrap: wrap;
     align-items: center;
     gap: 0.8rem;
+    padding-top: 1rem;
 }
 
 #header-component {

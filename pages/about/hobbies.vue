@@ -2,11 +2,7 @@
   <div id="hobbies-page">
     <div id="hobbies-selector">
       <header-component :hidden="hidden" title="Hobbies and interests" />
-      <pill-group
-        v-model="activeElement"
-        :hidden="hidden"
-        :items="pillGroups"
-      />
+      <pill-group v-model="activeElement" :hidden="hidden" :items="pillGroups" />
     </div>
     <div id="hobby-selected">
       <NuxtPage :current-item="currentItem" />
@@ -16,13 +12,16 @@
 
 <script setup lang="ts">
 import { HobbyDataItem, PillGroupItem } from "@/types/props";
+import { useHobbyStore } from "@/store/hobbyStore";
 
 const route = useRoute();
 
 const hidden = ref(true);
 const activeElement = ref<number>(Number(route.params.hobbyid));
 
-const { data } = await useFetch<HobbyDataItem[]>("/api/hobbies");
+const workStore = useHobbyStore();
+const data: Ref<HobbyDataItem[]> = await workStore.getHobbyData();
+
 const pillGroups = computed(
     () =>
         data.value?.map((item) => {

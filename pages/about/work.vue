@@ -14,23 +14,26 @@
 import { PillGroupItem, WorkDataItem } from "@/types/props";
 import { PATHS } from "@/assets/constants/paths";
 import { getFormattedDuration } from "@/utils/dateUtils";
+import { useWorkStore } from "@/store/workStore";
 
 const route = useRoute();
 
 const hidden = ref(true);
 const activeElement = ref<number>(Number(route.params.workid));
 
-const { data } = await useFetch<WorkDataItem[]>("/api/work");
+const workStore = useWorkStore();
+const data: Ref<WorkDataItem[]> = await workStore.getWorkData();
 
 const pillGroups = computed(
     () =>
-        data.value?.map((item) => {
+        data.value ? data.value.map((item) => {
             return {
                 primary: item.title,
                 secondary: getFormattedDuration(item.startDate, item.endDate, true)
             } as PillGroupItem;
-        }) ?? ([] as PillGroupItem[])
+        }) : ([] as PillGroupItem[])
 );
+
 const currentItem = computed(() =>
     data.value ? data.value[activeElement.value] : []
 );

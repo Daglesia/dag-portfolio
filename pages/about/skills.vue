@@ -11,30 +11,24 @@
 </template>
 
 <script setup lang="ts">
-import { SkillDataItem, SkillDataResponse } from "@/types/props";
-import { SkillMap } from "@/assets/constants/skills";
+import { SkillDataItem } from "@/types/props";
 import { PATHS } from "@/assets/constants/paths";
+import { useSkillStore } from "@/store/skillStore";
 
 const activeElement = ref<number | null>(null);
 
 watch(activeElement, (newValue) => {
     if (skillsetArray) {
-        navigateTo(`${PATHS.about.skills}/${skillsetArray[Number(newValue)].name}`);
+        navigateTo(`${PATHS.about.skills}/${skillsetArray.value[Number(newValue)].name}`);
     }
 });
 
-const { data } = await useFetch<SkillDataResponse[]>("/api/skills");
+const skillStore = useSkillStore();
+const skillsetArray: Ref<SkillDataItem[]> = await skillStore.getSkillData();
 
-const skillsetArray = data.value?.map(item => {
-    return {
-        startDate: item.startDate,
-        skill: SkillMap.get(item.name),
-        name: item.name,
-    } as SkillDataItem;
-});
-const skillIconsArray = <string[]>skillsetArray?.map(skill => skill.skill.icon);
+const skillIconsArray = <string[]>skillsetArray.value?.map(skill => skill.skill.icon);
 
-const currentItem = computed(() => skillsetArray ? skillsetArray[activeElement.value ?? 0] : {});
+const currentItem = computed(() => skillsetArray.value ? skillsetArray.value[activeElement.value ?? 0] : {});
 </script>
 
 <style scoped lang="scss">

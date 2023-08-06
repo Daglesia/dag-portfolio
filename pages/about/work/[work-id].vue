@@ -17,6 +17,7 @@
           <span>{{ currentItem.position }}</span>
         </template>
       </pill-component>
+      <padded-icon-group :hidden="false" v-model="activeElement" :items="skillIconsArray"/>
     </div>
   </div>
 </template>
@@ -31,6 +32,15 @@ import {
 const props = defineProps<{
   currentItem: WorkDataItem;
 }>();
+
+const activeElement = ref();
+
+watch(activeElement, (newValue) => {
+    navigateTo(`/about/skills/${skillArray[newValue].name}`);
+});
+
+const skillArray = getSkillsArrayFromIds(props.currentItem.skills);
+const skillIconsArray = skillArray.map(skill => skill.skill.icon);
 
 const duration = computed(() =>
     getFormattedDuration(
@@ -63,6 +73,12 @@ onMounted(() => {
   padding-top: 1rem;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+}
+
+#padded-icon-group {
+  display: flex;
+  justify-content: left;
   gap: 1rem;
 }
 </style>

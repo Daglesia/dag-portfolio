@@ -14,6 +14,7 @@ export interface WorkDataItem {
   position: string;
   startDate: string;
   endDate?: string;
+  skills: string[];
 }
 
 export interface PillGroupItem {
@@ -27,7 +28,7 @@ export interface Skill {
 }
 
 export interface SkillDataItem {
-  startDate: string;
+  startDate?: string;
   skill: Skill;
   name: string;
 }

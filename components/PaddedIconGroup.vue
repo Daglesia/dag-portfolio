@@ -1,6 +1,6 @@
 <!-- eslint-disable no-undef -->
 <template>
-    <div id="skills-group">
+    <div id="padded-icon-group">
       <padded-icon
         v-for="(item, index) in items"
         :key="index"

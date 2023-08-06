@@ -47,7 +47,7 @@ const currentItem = computed(() => skillsetArray.value ? skillsetArray.value[act
     padding-right: 3rem;
 }
 
-#skills-group {
+#padded-icon-group {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -57,6 +57,5 @@ const currentItem = computed(() => skillsetArray.value ? skillsetArray.value[act
 
 #header-component {
     padding-top: 1.5rem;
-    padding-right: 3rem;
 }
 </style>

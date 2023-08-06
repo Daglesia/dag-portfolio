@@ -4,7 +4,7 @@
       v-for="(item, index) in items"
       :key="index"
       :hidden="hidden"
-      :interactive="true"
+      interactive
       :active="modelValue === index"
       @click="() => activeElementHandler(Number(index))"
     >

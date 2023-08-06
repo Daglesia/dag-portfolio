@@ -63,6 +63,5 @@ onMounted(() => {
 
 #header-component {
   padding-top: 1.5rem;
-  padding-right: 3rem;
 }
 </style>

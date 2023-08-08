@@ -1,20 +1,21 @@
 <template>
   <div id="pill-group">
-    <pill-component
-      v-for="(item, index) in items"
-      :key="index"
-      :hidden="hidden"
-      interactive
-      :active="modelValue === index"
-      @click="() => activeElementHandler(Number(index))"
-    >
-      <template #default>
-        <span>{{ item.primary }}</span>
-      </template>
-      <template v-if="item.secondary" #right>
-        <span>{{ item.secondary }}</span>
-      </template>
-    </pill-component>
+      <pill-component
+        v-for="(item, index) in items"
+        :key="index"
+        :data-index="index"
+        :hidden="hidden"
+        interactive
+        :active="modelValue === index"
+        @click="() => activeElementHandler(Number(index))"
+      >
+        <template #default>
+          <span>{{ item.primary }}</span>
+        </template>
+        <template v-if="item.secondary" #right>
+          <span>{{ item.secondary }}</span>
+        </template>
+      </pill-component>
   </div>
 </template>
 

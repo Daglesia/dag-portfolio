@@ -61,11 +61,25 @@
 
   list-style: none;
   margin: initial;
-  padding-left: 1rem;
   margin-top: 0.9rem;
-  margin-left: 3.5rem;
-  border-left: 4px solid $color-darkblue-1;
-  border-radius: 2px;
+  margin-left: 1rem;
+  position: relative;
+  height: fit-content;
+}
+
+#list-component > ul > hr {
+  top:0;
+  margin: 0;
+  width: 0;
+  height: 50px;
+  position: absolute;
+  height: 100%;
+  border: 2px solid $color-darkblue-1;
+  border-radius: 100px;
+}
+
+#list-component > ul > li {
+  padding-left: 1.1rem;
 }
 
 #list-component > p {
@@ -80,13 +94,13 @@
   overflow: hidden;
 }
 
+#menu-icon > span, #menu-icon > hr {
+  transition: color 0.4s, background-color 0.4s;
+}
+
 #menu-icon > span {
   margin-bottom: 0.2rem;
   align-self: center;
-}
-
-#menu-icon > hr, #menu-icon > span {
-  transition: all 0.4s;
 }
 
 #menu-icon > hr {

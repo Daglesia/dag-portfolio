@@ -1,10 +1,10 @@
 <template>
     <div id="menu-icon" @click="menuIconClickHandler">
-        <Transition name="mario-span" appear>
+        <Transition :css="false" :on-enter="popFromAboveAnimationEnter">
             <IconCSS v-if="!hidden" name="fa6-solid:house" />
         </Transition>
-        <Transition name="mario-hr" appear>
-            <hr v-if="!hidden" >
+        <Transition :css="false" :on-enter="spanOutAnimationEnter">
+            <hr v-if="!hidden">
         </Transition>
     </div>
     <slot />

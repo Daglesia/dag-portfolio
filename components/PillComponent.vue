@@ -1,23 +1,17 @@
 <template>
-  <Transition name="mario-pill" appear>
-    <div
-      v-if="!hidden"
-      id="pill"
-      :class="{
-        centered: isSingleItem,
-        active: active,
-        interactive: interactive,
-      }"
-    >
-      <div id="pill-slot" :class="{ icon: !!icon }">
-        <IconCSS v-if="icon" :name="icon" />
-        <slot v-else />
-      </div>
-      <div id="pill-slot" class="smallerText" v-if="icon || !isSingleItem">
-        <slot :name="icon ? 'default' : 'right'" />
-      </div>
+  <div v-if="!hidden" id="pill" :class="{
+    centered: isSingleItem,
+    active: active,
+    interactive: interactive,
+  }">
+    <div id="pill-slot" :class="{ icon: !!icon }">
+      <IconCSS v-if="icon" :name="icon" />
+      <slot v-else />
     </div>
-  </Transition>
+    <div id="pill-slot" class="smallerText" v-if="icon || !isSingleItem">
+      <slot :name="icon ? 'default' : 'right'" />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">

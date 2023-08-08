@@ -1,5 +1,5 @@
 <template>
-  <Transition name="mario-nav" appear>
+  <Transition :css="false" :on-enter="fadeFromAboveAnimationEnter">
     <div v-if="!hidden" id="navigation">
       <nav>
         <div

@@ -10,5 +10,8 @@ export default defineNuxtConfig({
             }
         }
     },
-    modules: ["nuxt-icon", "@nuxtjs/eslint-module", "@pinia/nuxt"]
+    modules: ["nuxt-icon", "@nuxtjs/eslint-module", "@pinia/nuxt"],
+    build: {
+        transpile: ["gsap"],
+    },
 });

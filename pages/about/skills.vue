@@ -1,8 +1,10 @@
 <template>
     <div id="skills-page">
         <div id="skills-selector">
-            <header-component :hidden="false" title="Skills" />
-            <padded-icon-group :hidden="false" v-model="activeElement" :items="skillIconsArray"/>
+            <header-component :hidden="hidden" title="Skills" />
+            <suspense>
+                <padded-icon-group :hidden="hidden" v-model="activeElement" :items="skillIconsArray"/>
+            </suspense>
         </div>
         <div id="skill-selected">
             <NuxtPage :current-item="currentItem" />
@@ -16,6 +18,11 @@ import { PATHS } from "@/assets/constants/paths";
 import { useSkillStore } from "@/store/skillStore";
 
 const activeElement = ref<number | null>(null);
+const hidden = ref<boolean>(true);
+
+onMounted(()=>{
+    hidden.value = false;
+});
 
 watch(activeElement, (newValue) => {
     if (skillsetArray) {

@@ -16,7 +16,14 @@ import { PATHS } from "@/assets/constants/paths";
 import { ICONS } from "@/assets/constants/icons";
 
 definePageMeta({
-    middleware: "about"
+    middleware: "about",
+    pageTransition: {
+        css: false,
+        onLeave: (element, callback) => {
+            blurOutAnimation(element, callback);
+        },
+        mode: "out-in",
+    },
 });
 
 const hidden = ref(true);

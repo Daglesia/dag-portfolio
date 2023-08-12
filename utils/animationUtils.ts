@@ -3,7 +3,8 @@ import { CustomEase } from "gsap/CustomEase";
 
 gsap.registerPlugin(CustomEase);
 
-const LEAVE_ANIMATION_DURATION_SECONDS = 0.82;
+const ENTER_ANIMATION_DURATION_SECONDS = 0.82;
+const LEAVE_ANIMATION_DURATION_SECONDS = 0.6;
 
 type Callback = (...args: any[]) => void | null;
 
@@ -13,7 +14,7 @@ export const spanOutAnimationEnter = (element: Element, callback: Callback) => {
     gsap.from(element, {
         filter: "blur(4px)",
         ease: marioCurve,
-        duration: LEAVE_ANIMATION_DURATION_SECONDS / 2,
+        duration: ENTER_ANIMATION_DURATION_SECONDS / 2,
     });
     gsap.fromTo(element, {
         width: "0",
@@ -21,7 +22,7 @@ export const spanOutAnimationEnter = (element: Element, callback: Callback) => {
     {
         width: "100%",
         ease: marioCurve,
-        duration: LEAVE_ANIMATION_DURATION_SECONDS,
+        duration: ENTER_ANIMATION_DURATION_SECONDS,
         onComplete: callback,
     });
 };
@@ -30,7 +31,7 @@ export const popFromAboveAnimationEnter = (element: Element, callback: Callback)
     gsap.from(element, {
         filter: "blur(2px)",
         ease: marioCurve,
-        duration: LEAVE_ANIMATION_DURATION_SECONDS / 2,
+        duration: ENTER_ANIMATION_DURATION_SECONDS / 2,
     });
     gsap.fromTo(element, {
         transform: "translateY(5rem)",
@@ -39,7 +40,7 @@ export const popFromAboveAnimationEnter = (element: Element, callback: Callback)
         transform: "translateY(0rem)",
         ease: marioCurve,
         delay: 0.3,
-        duration: LEAVE_ANIMATION_DURATION_SECONDS,
+        duration: ENTER_ANIMATION_DURATION_SECONDS,
         onComplete: callback,
     });
 };
@@ -48,7 +49,7 @@ export const fadeFromAboveAnimationEnter = (element: Element, callback: Callback
     gsap.from(element, {
         filter: "blur(2px)",
         ease: marioCurve,
-        duration: LEAVE_ANIMATION_DURATION_SECONDS / 2,
+        duration: ENTER_ANIMATION_DURATION_SECONDS / 2,
     });
     gsap.fromTo(element, {
         transform: "translateY(1rem)",
@@ -58,20 +59,36 @@ export const fadeFromAboveAnimationEnter = (element: Element, callback: Callback
         opacity: 1,
         transform: "translateY(0rem)",
         ease: marioCurve,
-        duration: LEAVE_ANIMATION_DURATION_SECONDS,
+        duration: ENTER_ANIMATION_DURATION_SECONDS,
         onComplete: callback,
     });
 };
 
-export const fadeFromAboveAnimationEnter2 = (element: Element, callback: Callback) => {
-    console.log(element.dataset.index, "pwpwpwpw");
+export const blurOutAnimation = (element: Element, callback: Callback) => {
+    gsap.fromTo(element, {
+        filter: "blur(0px)",
+    },
+    {
+        filter: "blur(2px)",
+        ease: marioCurve,
+        duration: LEAVE_ANIMATION_DURATION_SECONDS / 3,
+    });
+    gsap.fromTo(element, {
+        opacity: 1,
+    },
+    {
+        opacity: 0,
+        ease: marioCurve,
+        duration: LEAVE_ANIMATION_DURATION_SECONDS,
+        onComplete: callback,
+    });
 };
 
 export const hrVerticalAnimation = (element: Element, callback: Callback) => {
     gsap.from(element, {
         filter: "blur(2px)",
         ease: marioCurve,
-        duration: LEAVE_ANIMATION_DURATION_SECONDS / 2,
+        duration: ENTER_ANIMATION_DURATION_SECONDS / 2,
     });
     gsap.fromTo(element, {
         height: 0,
@@ -79,7 +96,7 @@ export const hrVerticalAnimation = (element: Element, callback: Callback) => {
     {
         height: "100%",
         ease: marioCurve,
-        duration: LEAVE_ANIMATION_DURATION_SECONDS,
+        duration: ENTER_ANIMATION_DURATION_SECONDS,
         onComplete: callback,
     });
 };

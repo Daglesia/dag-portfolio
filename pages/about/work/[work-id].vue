@@ -17,7 +17,7 @@
           <span>{{ currentItem.position }}</span>
         </template>
       </pill-component>
-      <padded-icon-group :hidden="false" v-model="activeElement" :items="skillIconsArray"/>
+      <padded-icon-group :hidden="hidden" v-model="activeElement" :items="skillIconsArray"/>
     </div>
   </div>
 </template>
@@ -31,12 +31,13 @@ import {
 
 const props = defineProps<{
   currentItem: WorkDataItem;
+  hidden: boolean;
 }>();
 
-const activeElement = ref();
+const activeElement = ref(null);
 
 watch(activeElement, (newValue) => {
-    navigateTo(`/about/skills/${skillArray[newValue].name}`);
+    navigateTo(`/about/skills/${skillArray[newValue ?? 0].name}`);
 });
 
 const skillArray = getSkillsArrayFromIds(props.currentItem.skills);
@@ -55,12 +56,6 @@ const timeframe = computed(() =>
         props.currentItem?.endDate
     )
 );
-
-const hidden = ref(true);
-
-onMounted(() => {
-    hidden.value = false;
-});
 </script>
 
 <style lang="scss" scoped>

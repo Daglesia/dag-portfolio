@@ -5,7 +5,7 @@
       <pill-group v-model="activeElement" :hidden="hidden" :items="pillGroups" />
     </div>
     <div id="work-selected">
-      <NuxtPage :current-item="currentItem" />
+      <NuxtPage :current-item="currentItem" :hidden="hidden"/>
     </div>
   </div>
 </template>
@@ -16,9 +16,20 @@ import { PATHS } from "@/assets/constants/paths";
 import { getFormattedDuration } from "@/utils/dateUtils";
 import { useWorkStore } from "@/store/workStore";
 
+definePageMeta({
+    pageTransition: {
+        css: false,
+        onLeave: (element, callback) => {
+            blurOutAnimation(element, callback);
+        },
+        mode: "out-in",
+    },
+});
+
 const route = useRoute();
 
 const hidden = ref(true);
+const pageHidden = ref(false);
 const activeElement = ref<number>(Number(route.params.workid));
 
 const workStore = useWorkStore();

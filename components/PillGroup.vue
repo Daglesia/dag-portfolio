@@ -4,10 +4,10 @@
         v-for="(item, index) in items"
         :key="index"
         :data-index="index"
-        :hidden="hidden"
         interactive
         :active="modelValue === index"
         @click="() => activeElementHandler(Number(index))"
+        :style="{ 'animation-delay': delayInMilliseconds(index)}"
       >
         <template #default>
           <span>{{ item.primary }}</span>
@@ -22,11 +22,13 @@
 <script setup lang="ts">
 import { PillGroupItem } from "types/props";
 
-defineProps<{
-  hidden: boolean;
+const props = defineProps<{
   modelValue: number | null;
   items: PillGroupItem[];
+  delayMs?: number;
 }>();
+
+const delayInMilliseconds = (index: number) => props.delayMs ? `${100 * index + props.delayMs}ms` : `${100 * index}ms`;
 
 const emit = defineEmits<{(event: "update:modelValue", index: number): void;}>();
 

@@ -1,13 +1,11 @@
 <template>
-    <div id="menu-icon" @click="menuIconClickHandler">
-        <Transition :css="false" :on-enter="popFromAboveAnimationEnter">
-            <IconCSS v-if="!hidden" name="fa6-solid:house" />
-        </Transition>
-        <Transition :css="false" :on-enter="spanOutAnimationEnter">
+    <div>
+        <div id="menu-icon" @click="menuIconClickHandler">
+            <IconCSS name="fa6-solid:house" />
             <hr v-if="!hidden">
-        </Transition>
+        </div>
+        <slot />
     </div>
-    <slot />
 </template>
 
 <script setup lang="ts">

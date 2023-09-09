@@ -1,14 +1,18 @@
 const countYearsMonths = (startDate: Date, endDate: Date) => {
-    const months =
-    endDate.getMonth() -
-    startDate.getMonth() +
-    12 * (endDate.getFullYear() - startDate.getFullYear());
+    const yearsDiff = endDate.getFullYear() - startDate.getFullYear();
+    const monthsDiff = endDate.getMonth() - startDate.getMonth();
+    const totalMonths = yearsDiff * 12 + monthsDiff;
 
     return {
-        years: Math.round(months / 12),
-        months: months % 12
+        years: Math.floor(totalMonths / 12),
+        months: totalMonths % 12
     };
 };
+
+const startDate = new Date("2021-03-14T23:00:00.000Z");
+const endDate = new Date(Date.now());
+
+countYearsMonths(startDate, endDate);
 
 export const getFormattedStartEndFrame = (
     startString: string,

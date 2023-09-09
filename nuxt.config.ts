@@ -11,7 +11,7 @@ export default defineNuxtConfig({
         }
     },
     modules: ["nuxt-icon", "@nuxtjs/eslint-module", "@pinia/nuxt"],
-    build: {
-        transpile: ["gsap"],
+    app: {
+        layoutTransition: { name: "layout", mode: "out-in", appear: true }
     },
 });

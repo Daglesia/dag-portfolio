@@ -2,15 +2,12 @@ import { defineStore } from "pinia";
 import { HobbyDataItem } from "@/types/props";
 
 export const useHobbyStore = defineStore("hobby", () => {
-    const hobbyData = ref();
+    const hobbyData = ref<HobbyDataItem[]>([]);
 
-    const getHobbyData = async () => {
-        if (!hobbyData.value) {
-            const { data } = await useFetch<HobbyDataItem[]>("/api/hobbies");
-            hobbyData.value = data;
-        };
-        return hobbyData.value;
+    const fetchHobbyData = async (): Promise<void> => {
+        const { data } = await useFetch<HobbyDataItem[]>("/api/hobbies");
+        hobbyData.value = data.value ?? [] as HobbyDataItem[];
     };
 
-    return { getHobbyData };
+    return { hobbyData, fetchHobbyData };
 });

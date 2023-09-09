@@ -1,9 +1,7 @@
 <template>
-  <Transition name="mario-pill" appear>
-    <div v-if="!hidden" id="padded-icon" :class="{interactive: interactive, active: active}">
-        <IconCSS :name="icon" />
-    </div>
-  </Transition>
+  <div id="padded-icon" :class="{ interactive: interactive, active: active }">
+    <IconCSS :name="icon" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -11,7 +9,6 @@ defineProps<{
   icon: string;
   interactive?: boolean;
   active?: boolean;
-  hidden: boolean;
 }>();
 </script>
 

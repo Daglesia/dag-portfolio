@@ -1,37 +1,42 @@
 <template>
-  <div id="hobby-description">
-    <header-component :hidden="hidden" :title="currentItem.title" />
-    <list-component
-      :hidden="hidden"
-      :title="currentItem.subtitle"
-      :items="data"
-    />
-  </div>
+    <div id="hobby-description">
+      <header-component :title="currentItem.title" />
+      <list-component :delay-ms="100" :title="currentItem.subtitle" :items="currentItem.items" />
+    </div>
 </template>
-
+  
 <script setup lang="ts">
 import { HobbyDataItem } from "@/types/props";
-
-const hidden = ref(true);
-
-const props = defineProps<{
-  currentItem: HobbyDataItem;
-}>();
-
-const data = computed(() => props?.currentItem.items);
-
-onMounted(() => {
-    hidden.value = false;
-});
+  
+import { useHobbyStore } from "@/store/hobbyStore";
+import { storeToRefs } from "pinia";
+  
+const route = useRoute();
+  
+const hobbyStore = useHobbyStore();
+  
+const { hobbyData } = storeToRefs(hobbyStore);
+  
+const currentItem = computed<HobbyDataItem>(() => hobbyData.value.find(hobbyItem => hobbyItem.id === route.params.hobbyid) as HobbyDataItem);
 </script>
-
-<style lang="scss" scoped>
-#hobby-description {
-  padding-inline: 4rem;
-  padding-top: 1.4rem;
-}
-
-#list-component {
-  margin-left: 1rem;
-}
-</style>
+  
+  <style lang="scss" scoped>
+  #hobby-description {
+    padding-inline: 4rem;
+    padding-top: 1.4rem;
+  }
+  
+  #hobby-pills {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  #padded-icon-group {
+    display: flex;
+    justify-content: left;
+    gap: 1rem;
+  }
+  </style>
+  

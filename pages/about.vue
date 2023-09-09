@@ -1,10 +1,10 @@
 <template>
   <div id="about-view">
-    <header-component primary title="About" :hidden="hidden" />
+    <header-component primary title="About" />
     <icon-navigation
-      v-model="activeElement"
+      :modelValue="activeElement"
+      @update:modelValue="handleActiveElementChange"
       :menuItems="menuItems"
-      :hidden="hidden"
     />
     <NuxtPage />
   </div>
@@ -14,19 +14,18 @@
 import { NavigationMenuItem } from "@/types/props";
 import { PATHS } from "@/assets/constants/paths";
 import { ICONS } from "@/assets/constants/icons";
+import { RouteLocationNormalized } from ".nuxt/vue-router";
 
 definePageMeta({
     middleware: "about",
+    layout: "menu",
     pageTransition: {
-        css: false,
-        onLeave: (element, callback) => {
-            blurOutAnimation(element, callback);
-        },
+        name: "layout",
+        appear: true,
         mode: "out-in",
-    },
+    }
 });
 
-const hidden = ref(true);
 const route = useRoute();
 
 const menuItems = <NavigationMenuItem[]>[
@@ -46,12 +45,13 @@ const menuItems = <NavigationMenuItem[]>[
 
 const activeElement = ref(menuItems.findIndex(item => route.path.includes(item.path)));
 
-watch(activeElement, (newValue) => {
-    navigateTo(menuItems[newValue].path);
-});
-  
-onMounted(() => {
-    hidden.value = false;
+const handleActiveElementChange = (index: number): void => {
+    activeElement.value = index;
+    navigateTo(menuItems[activeElement.value].path);
+};
+
+onBeforeRouteUpdate((to: RouteLocationNormalized, _from: RouteLocationNormalized):void => {
+    activeElement.value = menuItems.findIndex(item => item.path === to.matched[1].path);
 });
 </script>
 

@@ -1,33 +1,52 @@
-.mario-pill-enter-active {
-  opacity: 0;
-  animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+.layout-leave-active {
+  animation: blur-out 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
-.mario-pill-leave-active {
-  animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+.layout-enter-active {
+  animation: 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
-.mario-span-enter-active {
+#span-container>span {
   animation: slide-up 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
-.mario-span-leave-active {
-  animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
-}
-
-.mario-hr-enter-active {
+#hr-container>hr {
   animation: span-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
-.mario-hr-leave-active {
-  animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+#menu-icon>span {
+  animation: slide-up 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
-.mario-nav-enter-active {
+#menu-icon>hr {
+  animation: span-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+#navigation {
+  animation: slide-up-low 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+#pill {
+  opacity: 0;
+  animation: slide-up-low 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+#padded-icon {
   opacity: 0;
   animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
-.mario-nav-leave-active {
-  animation: blur-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+#list-component>p {
+  opacity: 0;
+  animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+#list-component>ul>li {
+  opacity: 0;
+  animation: slide-up-low-2 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+#list-component>ul>hr {
+  opacity: 0;
+  animation: hr-vertical 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }

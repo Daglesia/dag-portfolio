@@ -53,7 +53,7 @@ nav > div > span {
 
 .underlines > :not(.active) {
   border: $border-size solid #6dd7fd80;
-  width: calc(100% - $border-size);
+  width: 100%;
 }
 
 .underlines > .active {

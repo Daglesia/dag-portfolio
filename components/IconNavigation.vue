@@ -1,6 +1,5 @@
 <template>
-  <Transition :css="false" :on-enter="fadeFromAboveAnimationEnter">
-    <div v-if="!hidden" id="navigation">
+    <div id="navigation">
       <nav>
         <div
           v-for="(item, index) in menuItems"
@@ -18,34 +17,45 @@
         <hr class="active delayed">
       </div>
     </div>
-  </Transition>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { NavigationMenuItem } from "types/props";
+import { NavigationMenuItem } from "@/types/props";
+
+const props = defineProps<{
+  menuItems: NavigationMenuItem[];
+  modelValue: number;
+}>();
+
+const selectedIndex = computed(()=>props.modelValue);
 
 const emit = defineEmits<{(event: "update:modelValue", index: number): void;}>();
 
 const startingPoint = ref<HTMLElement[]>();
-const left = ref("0px");
-const width = ref("0px");
+const left = ref(`calc(${props.modelValue * (1/3)}%)`);
+const width = ref("calc(33% + 1px)");
 
-const setNavigationLine = (newLeft: number, newWidth: number) => {
+const setNavigationLine = (newLeft: number) => {
     left.value = `${newLeft}px`;
-    width.value = `${newWidth}px`;
 };
 
-const props = defineProps<{
-  menuItems: NavigationMenuItem[];
-  hidden: boolean;
-  modelValue: number;
-}>();
+const setSelectedElement = (element: HTMLElement[] | undefined, index: number | undefined = undefined) => {
+    if (element) {
+        const item = element[index ?? props.modelValue] as HTMLElement;
+        if (item.offsetWidth) {
+            setNavigationLine(item.offsetLeft);
+        }
+    }
+};
 
 watch(startingPoint, (newValue) => {
-    if (newValue) {
-        const item = newValue[props.modelValue] as HTMLElement;
-        setNavigationLine(item.offsetLeft, item.offsetWidth);
+    setSelectedElement(newValue);
+});
+
+watch(selectedIndex, (newValue) => {
+    if(startingPoint.value) {
+        setSelectedElement(startingPoint.value, newValue);
     }
 });
 
@@ -54,7 +64,7 @@ const handleClick = (event: MouseEvent, index: number) => {
     while (element.nodeName !== "DIV") {
         element = element.parentNode as HTMLElement;
     }
-    setNavigationLine(element.offsetLeft, element.offsetWidth);
+    setNavigationLine(element.offsetLeft);
     emit("update:modelValue", index);
 };
 </script>

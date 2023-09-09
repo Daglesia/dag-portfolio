@@ -4,12 +4,14 @@ export interface NavigationMenuItem {
 }
 
 export interface HobbyDataItem {
+  id: string;
   title: string;
   subtitle: string;
   items: string[];
 }
 
 export interface WorkDataItem {
+  id: string;
   title: string;
   position: string;
   startDate: string;
@@ -28,7 +30,7 @@ export interface Skill {
 }
 
 export interface SkillDataItem {
-  startDate?: string;
+  startDate: string;
   skill: Skill;
   name: string;
 }

@@ -1,29 +1,25 @@
 <template>
   <div id="list-component">
-    <Transition :css="false" :on-enter="fadeFromAboveAnimationEnter">
-      <p v-if="!hidden && title">
+      <p v-if="title" :style="{animationDelay: `${delayMs ?? 0}ms`}">
         {{ title }}
       </p>
-    </Transition>
       <ul>
-        <transition-group :css="false" :on-enter="fadeFromAboveAnimationEnter2" appear>
-          <li v-for="item in items" :key="item">
+          <li v-for="item, index in items" :key="item" :style="{ 'animation-delay': delayInMilliseconds(index)}">
             {{ item }}
           </li>
-        </transition-group>
-        <transition :css="false" :on-enter="hrVerticalAnimation">
-          <hr v-if="!hidden">
-        </transition>
+          <hr :style="{animationDelay: `${delayMs ?? 0}ms`}">
       </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  hidden: boolean;
+const props = defineProps<{
   title?: string;
   items: string[];
+  delayMs?: number;
 }>();
+
+const delayInMilliseconds = (index: number) => props.delayMs ? `${100 * index + props.delayMs}ms` : `${100 * index}ms`;
 </script>
 
 <style lang="scss" scoped>

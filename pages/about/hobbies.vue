@@ -1,53 +1,58 @@
 <template>
-  <div id="hobbies-page">
-    <div id="hobbies-selector">
-      <header-component :hidden="hidden" title="Hobbies and interests" />
-      <pill-group v-model="activeElement" :hidden="hidden" :items="pillGroups" />
+  <div id="hobby-page">
+    <div id="hobby-selector">
+      <header-component title="Free time" />
+      <pill-group v-model="activeElement" :items="pillGroups" />
     </div>
     <div id="hobby-selected">
-      <NuxtPage :current-item="currentItem" />
+      <NuxtPage/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { HobbyDataItem, PillGroupItem } from "@/types/props";
+import { PillGroupItem } from "@/types/props";
+import { PATHS } from "@/assets/constants/paths";
 import { useHobbyStore } from "@/store/hobbyStore";
+import { storeToRefs } from "pinia";
+
+definePageMeta({
+    layout: "menu",
+    pageTransition: {
+        name: "layout",
+        appear: true,
+        mode: "out-in",
+    }
+});
 
 const route = useRoute();
 
-const hidden = ref(true);
-const activeElement = ref<number>(Number(route.params.hobbyid));
+const hobbyStore = useHobbyStore();
+const { hobbyData } = storeToRefs(hobbyStore);
 
-const workStore = useHobbyStore();
-const data: Ref<HobbyDataItem[]> = await workStore.getHobbyData();
+const activeElement = ref<number>(hobbyData.value.findIndex(hobbyItem => hobbyItem.id === route.params.hobbyid));
 
 const pillGroups = computed(
     () =>
-        data.value?.map((item) => {
-            return { primary: item.title } as PillGroupItem;
-        }) ?? ([] as PillGroupItem[])
-);
-const currentItem = computed(() =>
-    data.value ? data.value[activeElement.value] : []
+        hobbyData.value ? hobbyData.value.map((item) => {
+            return {
+                primary: item.title,
+            } as PillGroupItem;
+        }) : ([] as PillGroupItem[])
 );
 
 watch(activeElement, (newValue) => {
-    navigateTo("/about/hobbies/" + newValue);
-});
-
-onMounted(() => {
-    hidden.value = false;
+    navigateTo(`${PATHS.about.hobbies}/${hobbyData.value[newValue].id}`);
 });
 </script>
 
 <style lang="scss" scoped>
-#hobbies-page {
+#hobby-page {
   padding-left: 2rem;
   display: flex;
 }
 
-#hobbies-selector {
+#hobby-selector {
   width: 40vw;
 }
 

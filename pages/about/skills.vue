@@ -1,68 +1,63 @@
 <template>
-    <div id="skills-page">
-        <div id="skills-selector">
-            <header-component :hidden="hidden" title="Skills" />
-            <suspense>
-                <padded-icon-group :hidden="hidden" v-model="activeElement" :items="skillIconsArray"/>
-            </suspense>
-        </div>
-        <div id="skill-selected">
-            <NuxtPage :current-item="currentItem" />
-        </div>
+  <div id="skill-page">
+    <div id="skill-selector">
+      <header-component title="Skills" />
+      <padded-icon-group v-model="activeElement" :items="icons" />
     </div>
+    <div id="skill-selected">
+      <NuxtPage />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { SkillDataItem } from "@/types/props";
 import { PATHS } from "@/assets/constants/paths";
 import { useSkillStore } from "@/store/skillStore";
+import { storeToRefs } from "pinia";
 
-const activeElement = ref<number | null>(null);
-const hidden = ref<boolean>(true);
-
-onMounted(()=>{
-    hidden.value = false;
-});
-
-watch(activeElement, (newValue) => {
-    if (skillsetArray) {
-        navigateTo(`${PATHS.about.skills}/${skillsetArray.value[Number(newValue)].name}`);
+definePageMeta({
+    layout: "menu",
+    pageTransition: {
+        name: "layout",
+        appear: true,
+        mode: "out-in",
     }
 });
 
+const route = useRoute();
+
+
 const skillStore = useSkillStore();
-const skillsetArray: Ref<SkillDataItem[]> = await skillStore.getSkillData();
+const { skillData } = storeToRefs(skillStore);
 
-const skillIconsArray = <string[]>skillsetArray.value?.map(skill => skill.skill.icon);
+const activeElement = ref<number>(skillData.value.findIndex(skill => skill.name === route.params.skillid));
 
-const currentItem = computed(() => skillsetArray.value ? skillsetArray.value[activeElement.value ?? 0] : {});
+const icons: string[] = skillData.value.map(dataItem => dataItem.skill.icon);
+
+watch(activeElement, (newValue) => {
+    navigateTo(`${PATHS.about.skills}/${skillData.value[newValue].name}`);
+});
 </script>
 
-<style scoped lang="scss">
-#skills-page {
-    display: flex;
+<style lang="scss" scoped>
+#skill-page {
+  padding-left: 2rem;
+  display: flex;
 }
 
-#skills-selector {
-    width: 40vw;
-    padding-left: 2rem;
-    padding-right: 3rem;
+#skill-selector {
+  width: 40vw;
 }
 
 #skill-selected {
-    width: 40vw;
-    padding-right: 3rem;
-}
-
-#padded-icon-group {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.8rem;
-    padding-top: 1rem;
+  width: 40vw;
 }
 
 #header-component {
-    padding-top: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+#padded-icon-group {
+  padding-top: 1rem;
 }
 </style>

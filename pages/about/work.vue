@@ -1,43 +1,41 @@
 <template>
   <div id="work-page">
     <div id="work-selector">
-      <header-component :hidden="hidden" title="Work experience" />
-      <pill-group v-model="activeElement" :hidden="hidden" :items="pillGroups" />
+      <header-component title="Work experience" />
+      <pill-group v-model="activeElement" :items="pillGroups" />
     </div>
     <div id="work-selected">
-      <NuxtPage :current-item="currentItem" :hidden="hidden"/>
+      <NuxtPage/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { PillGroupItem, WorkDataItem } from "@/types/props";
+import { PillGroupItem } from "@/types/props";
 import { PATHS } from "@/assets/constants/paths";
 import { getFormattedDuration } from "@/utils/dateUtils";
 import { useWorkStore } from "@/store/workStore";
+import { storeToRefs } from "pinia";
 
 definePageMeta({
+    layout: "menu",
     pageTransition: {
-        css: false,
-        onLeave: (element, callback) => {
-            blurOutAnimation(element, callback);
-        },
+        name: "layout",
+        appear: true,
         mode: "out-in",
-    },
+    }
 });
 
 const route = useRoute();
 
-const hidden = ref(true);
-const pageHidden = ref(false);
-const activeElement = ref<number>(Number(route.params.workid));
-
 const workStore = useWorkStore();
-const data: Ref<WorkDataItem[]> = await workStore.getWorkData();
+const { workData } = storeToRefs(workStore);
+
+const activeElement = ref<number>(workData.value.findIndex(workItem => workItem.id === route.params.workid));
 
 const pillGroups = computed(
     () =>
-        data.value ? data.value.map((item) => {
+        workData.value ? workData.value.map((item) => {
             return {
                 primary: item.title,
                 secondary: getFormattedDuration(item.startDate, item.endDate, true)
@@ -45,16 +43,8 @@ const pillGroups = computed(
         }) : ([] as PillGroupItem[])
 );
 
-const currentItem = computed(() =>
-    data.value ? data.value[activeElement.value] : []
-);
-
 watch(activeElement, (newValue) => {
-    navigateTo(`${PATHS.about.work}/${newValue}`);
-});
-
-onMounted(() => {
-    hidden.value = false;
+    navigateTo(`${PATHS.about.work}/${workData.value[newValue].id}`);
 });
 </script>
 

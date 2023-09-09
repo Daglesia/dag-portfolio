@@ -1,5 +1,5 @@
 import { SkillMap } from "@/assets/constants/skills";
-import { SkillDataItem } from "@/types/props";
+import { SkillDataItem, WorkDataItem } from "@/types/props";
 
 export const getSkillsArrayFromIds = (ids: string[]): SkillDataItem[] => {
     const skills = ids.map(id => {
@@ -9,4 +9,8 @@ export const getSkillsArrayFromIds = (ids: string[]): SkillDataItem[] => {
         };
     });
     return (skills?.filter(skill => skill.skill !== undefined) ?? []) as SkillDataItem[];
+};
+
+export const getWorkItemsWithParticularSkill = (skillDataItem: SkillDataItem, workItemsAvailable: WorkDataItem[]) => {
+    const filteredWorkItems = workItemsAvailable.filter(workItem => workItem.skills.includes(skillDataItem.name));
 };

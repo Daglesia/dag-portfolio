@@ -7,12 +7,44 @@ $color-darkblue-1: #57abc9;
 $color-dark: #1e1e1e;
 
 :root {
-  font-family: "Jaldi";
+  font-family: 'Calibri', sans-serif;
   height: 100%;
-  font-size: 1em;
+  font-size: 16px;
+}
+
+/* Small screen */
+@media screen and (max-width: 576px) {
+  :root {
+    font-size: 6px;
+  }
+}
+
+/* Medium screen */
+@media screen and (min-width: 577px) and (max-width: 992px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+/* Large screen */
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+/* Extra large screen */
+@media screen and (min-width: 1201px) {
+  :root {
+    font-size: 16px;
+  }
 }
 
 body {
   margin: 0;
   background-color: $color-dark;
+}
+
+a {
+  all: unset;
 }

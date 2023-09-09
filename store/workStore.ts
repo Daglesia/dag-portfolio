@@ -2,15 +2,12 @@ import { defineStore } from "pinia";
 import { WorkDataItem } from "@/types/props";
 
 export const useWorkStore = defineStore("work", () => {
-    const workData = ref();
+    const workData = ref<WorkDataItem[]>([]);
 
-    const getWorkData = async () => {
-        if (!workData.value) {
-            const { data } = await useFetch<WorkDataItem[]>("/api/work");
-            workData.value = data;
-        };
-        return workData.value;
+    const fetchWorkData = async (): Promise<void> => {
+        const { data } = await useFetch<WorkDataItem[]>("/api/work");
+        workData.value = data.value ?? [] as WorkDataItem[];
     };
 
-    return { getWorkData };
+    return { workData, fetchWorkData };
 });

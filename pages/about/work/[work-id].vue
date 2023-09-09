@@ -1,23 +1,23 @@
 <template>
   <div id="work-description">
-    <header-component :hidden="hidden" :title="currentItem.title" />
+    <header-component :title="title" />
     <div id="work-pills">
-      <pill-component icon="fa6-solid:clock" :hidden="hidden">
+      <pill-component icon="fa6-solid:clock">
         <template #default>
           <span>{{ duration }}</span>
         </template>
       </pill-component>
-      <pill-component icon="fa6-solid:calendar" :hidden="hidden">
+      <pill-component icon="fa6-solid:calendar" :style="{ 'animation-delay': '100ms' }">
         <template #default>
           <span>{{ timeframe }}</span>
         </template>
       </pill-component>
-      <pill-component icon="fa6-solid:suitcase" :hidden="hidden">
+      <pill-component icon="fa6-solid:suitcase" :style="{ 'animation-delay': '200ms' }">
         <template #default>
-          <span>{{ currentItem.position }}</span>
+          <span>{{ position }}</span>
         </template>
       </pill-component>
-      <padded-icon-group :hidden="hidden" v-model="activeElement" :items="skillIconsArray"/>
+      <padded-icon-group :delayMs="300" @update:modelValue="skillClickHandler" :items="skillIconsArray" />
     </div>
   </div>
 </template>
@@ -29,32 +29,35 @@ import {
     getFormattedStartEndFrame
 } from "@/utils/dateUtils";
 
-const props = defineProps<{
-  currentItem: WorkDataItem;
-  hidden: boolean;
-}>();
+import { useWorkStore } from "@/store/workStore";
+import { storeToRefs } from "pinia";
 
-const activeElement = ref(null);
+const route = useRoute();
 
-watch(activeElement, (newValue) => {
+const skillClickHandler = (newValue: number) => {
     navigateTo(`/about/skills/${skillArray[newValue ?? 0].name}`);
-});
+};
 
-const skillArray = getSkillsArrayFromIds(props.currentItem.skills);
+const workStore = useWorkStore();
+
+const { workData } = storeToRefs(workStore);
+
+const currentItem = computed<WorkDataItem>(() => workData.value.find(workItem => workItem.id === route.params.workid) as WorkDataItem);
+
+const title = currentItem.value.title;
+const position = currentItem.value.position;
+
+const skillArray = getSkillsArrayFromIds(currentItem.value.skills);
 const skillIconsArray = skillArray.map(skill => skill.skill.icon);
 
-const duration = computed(() =>
-    getFormattedDuration(
-        props.currentItem.startDate,
-        props.currentItem?.endDate,
-        false
-    )
+const duration = getFormattedDuration(
+    currentItem.value.startDate,
+    currentItem.value?.endDate,
+    false
 );
-const timeframe = computed(() =>
-    getFormattedStartEndFrame(
-        props.currentItem.startDate,
-        props.currentItem?.endDate
-    )
+const timeframe = getFormattedStartEndFrame(
+    currentItem.value.startDate,
+    currentItem.value?.endDate
 );
 </script>
 

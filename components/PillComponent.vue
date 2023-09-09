@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!hidden" id="pill" :class="{
+  <div id="pill" :class="{
     centered: isSingleItem,
     active: active,
     interactive: interactive,
@@ -18,7 +18,6 @@
 import { useSlots } from "vue";
 
 const props = defineProps<{
-  hidden: boolean;
   active?: boolean;
   interactive?: boolean;
   icon?: string;

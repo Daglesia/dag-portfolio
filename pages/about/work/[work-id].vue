@@ -29,20 +29,16 @@ import {
     getFormattedStartEndFrame
 } from "@/utils/dateUtils";
 
-import { useWorkStore } from "@/store/workStore";
-import { storeToRefs } from "pinia";
-
 const route = useRoute();
 
 const skillClickHandler = (newValue: number) => {
     navigateTo(`/about/skills/${skillArray[newValue ?? 0].name}`);
 };
 
-const workStore = useWorkStore();
+const nuxtApp = useNuxtApp();
+const workData = nuxtApp.$workData();
 
-const { workData } = storeToRefs(workStore);
-
-const currentItem = computed<WorkDataItem>(() => workData.value.find(workItem => workItem.id === route.params.workid) as WorkDataItem);
+const currentItem = computed<WorkDataItem>(() => workData.value?.find(workItem => workItem.id === route.params.workid) as WorkDataItem);
 
 const title = currentItem.value.title;
 const position = currentItem.value.position;

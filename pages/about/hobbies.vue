@@ -13,8 +13,6 @@
 <script setup lang="ts">
 import { PillGroupItem } from "@/types/props";
 import { PATHS } from "@/assets/constants/paths";
-import { useHobbyStore } from "@/store/hobbyStore";
-import { storeToRefs } from "pinia";
 
 definePageMeta({
     layout: "menu",
@@ -27,10 +25,10 @@ definePageMeta({
 
 const route = useRoute();
 
-const hobbyStore = useHobbyStore();
-const { hobbyData } = storeToRefs(hobbyStore);
+const nuxtApp = useNuxtApp();
+const hobbyData = nuxtApp.$hobbyData();
 
-const activeElement = ref<number>(hobbyData.value.findIndex(hobbyItem => hobbyItem.id === route.params.hobbyid));
+const activeElement = ref<number | null>(hobbyData.value?.findIndex(hobbyItem => hobbyItem.id === route.params.hobbyid) ?? null);
 
 const pillGroups = computed(
     () =>
@@ -42,7 +40,9 @@ const pillGroups = computed(
 );
 
 watch(activeElement, (newValue) => {
-    navigateTo(`${PATHS.about.hobbies}/${hobbyData.value[newValue].id}`);
+    if(hobbyData.value !== null) {
+        navigateTo(`${PATHS.about.hobbies}/${hobbyData.value[newValue ?? 0].id}`);
+    }
 });
 </script>
 

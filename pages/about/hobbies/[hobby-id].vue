@@ -8,16 +8,12 @@
 <script setup lang="ts">
 import { HobbyDataItem } from "@/types/props";
   
-import { useHobbyStore } from "@/store/hobbyStore";
-import { storeToRefs } from "pinia";
-  
 const route = useRoute();
   
-const hobbyStore = useHobbyStore();
+const nuxtApp = useNuxtApp();
+const hobbyData = nuxtApp.$hobbyData();
   
-const { hobbyData } = storeToRefs(hobbyStore);
-  
-const currentItem = computed<HobbyDataItem>(() => hobbyData.value.find(hobbyItem => hobbyItem.id === route.params.hobbyid) as HobbyDataItem);
+const currentItem = computed<HobbyDataItem>(() => hobbyData.value?.find(hobbyItem => hobbyItem.id === route.params.hobbyid) as HobbyDataItem);
 </script>
   
   <style lang="scss" scoped>

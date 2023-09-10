@@ -18,20 +18,13 @@ import {
     getFormattedDuration
 } from "@/utils/dateUtils";
 
-import { useSkillStore } from "@/store/skillStore";
-import { storeToRefs } from "pinia";
-import { useWorkStore } from "@/store/workStore";
-import { getWorkItemsWithParticularSkill } from "@/utils/aboutUtils";
-
 const route = useRoute();
 
-const skillStore = useSkillStore();
-const workStore = useWorkStore();
+const nuxtApp = useNuxtApp();
+const skillData = nuxtApp.$skillsData();
+const workData = nuxtApp.$workData();
 
-const { skillData } = storeToRefs(skillStore);
-const { workData } = storeToRefs(workStore);
-
-const currentItem = computed<SkillDataItem>(() => skillData.value.find(skill => skill.name === route.params.skillid) as SkillDataItem);
+const currentItem = computed<SkillDataItem>(() => skillData.value?.find(skill => skill.name === route.params.skillid) as SkillDataItem);
 
 const title = currentItem.value.skill.displayName;
 

@@ -12,8 +12,6 @@
 
 <script setup lang="ts">
 import { PATHS } from "@/assets/constants/paths";
-import { useSkillStore } from "@/store/skillStore";
-import { storeToRefs } from "pinia";
 
 definePageMeta({
     layout: "menu",
@@ -26,16 +24,15 @@ definePageMeta({
 
 const route = useRoute();
 
+const nuxtApp = useNuxtApp();
+const skillData = nuxtApp.$skillsData();
 
-const skillStore = useSkillStore();
-const { skillData } = storeToRefs(skillStore);
-
-const activeElement = ref<number>(skillData.value.findIndex(skill => skill.name === route.params.skillid));
+const activeElement = ref<number | null>(skillData.value?.findIndex(skill => skill.name === route.params.skillid) ?? null);
 
 const icons: string[] = skillData.value.map(dataItem => dataItem.skill.icon);
 
 watch(activeElement, (newValue) => {
-    navigateTo(`${PATHS.about.skills}/${skillData.value[newValue].name}`);
+    navigateTo(`${PATHS.about.skills}/${skillData.value[newValue ?? 0].name}`);
 });
 </script>
 

@@ -14,8 +14,6 @@
 import { PillGroupItem } from "@/types/props";
 import { PATHS } from "@/assets/constants/paths";
 import { getFormattedDuration } from "@/utils/dateUtils";
-import { useWorkStore } from "@/store/workStore";
-import { storeToRefs } from "pinia";
 
 definePageMeta({
     layout: "menu",
@@ -28,10 +26,10 @@ definePageMeta({
 
 const route = useRoute();
 
-const workStore = useWorkStore();
-const { workData } = storeToRefs(workStore);
+const nuxtApp = useNuxtApp();
+const workData = nuxtApp.$workData();
 
-const activeElement = ref<number>(workData.value.findIndex(workItem => workItem.id === route.params.workid));
+const activeElement = ref<number | null>(workData.value?.findIndex(workItem => workItem.id === route.params.workid) ?? null);
 
 const pillGroups = computed(
     () =>
@@ -44,7 +42,9 @@ const pillGroups = computed(
 );
 
 watch(activeElement, (newValue) => {
-    navigateTo(`${PATHS.about.work}/${workData.value[newValue].id}`);
+    if(workData.value !== null) {
+        navigateTo(`${PATHS.about.work}/${workData.value[newValue ?? 0].id}`);
+    }
 });
 </script>
 

@@ -7,7 +7,7 @@
                     <span>{{ duration }}</span>
                 </template>
             </pill-component>
-            <list-component :delay-ms="300" title="Used in:" :items="['Bepe', 'bopo']" />
+            <list-component v-if="usedInArray.length" :delay-ms="300" title="Used in:" :items="usedInArray" />
         </div>
     </div>
 </template>
@@ -25,6 +25,10 @@ const skillData = nuxtApp.$skillsData();
 const workData = nuxtApp.$workData();
 
 const currentItem = computed<SkillDataItem>(() => skillData.value?.find(skill => skill.name === route.params.skillid) as SkillDataItem);
+
+const workItems = getWorkItemsWithParticularSkill(currentItem.value, workData.value ?? []);
+
+const usedInArray: string[] = [ ...new Set(workItems.map(workItem => workItem.title))];
 
 const title = currentItem.value.skill.displayName;
 
@@ -52,6 +56,10 @@ const duration = getFormattedDuration(
     display: flex;
     justify-content: left;
     gap: 1rem;
+}
+
+#list-component {
+    padding-left: 1rem;
 }
 </style>
   

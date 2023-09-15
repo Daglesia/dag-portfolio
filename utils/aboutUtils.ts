@@ -11,6 +11,6 @@ export const getSkillsArrayFromIds = (ids: string[]): SkillDataItem[] => {
     return (skills?.filter(skill => skill.skill !== undefined) ?? []) as SkillDataItem[];
 };
 
-export const getWorkItemsWithParticularSkill = (skillDataItem: SkillDataItem, workItemsAvailable: WorkDataItem[]) => {
-    const filteredWorkItems = workItemsAvailable.filter(workItem => workItem.skills.includes(skillDataItem.name));
+export const getWorkItemsWithParticularSkill = (skillDataItem: SkillDataItem, workItemsAvailable: WorkDataItem[]): WorkDataItem[] => {
+    return workItemsAvailable.filter(workItem => workItem.skills.includes(skillDataItem.name));
 };

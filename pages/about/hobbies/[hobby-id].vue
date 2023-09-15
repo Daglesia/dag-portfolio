@@ -34,5 +34,10 @@ const currentItem = computed<HobbyDataItem>(() => hobbyData.value?.find(hobbyIte
     justify-content: left;
     gap: 1rem;
   }
+
+  
+#list-component {
+    padding-left: 1rem;
+}
   </style>
   

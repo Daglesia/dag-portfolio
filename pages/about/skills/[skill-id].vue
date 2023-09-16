@@ -13,10 +13,11 @@
 </template>
   
 <script setup lang="ts">
-import { SkillDataItem } from "types/props";
+import { InteractiveListItem, SkillDataItem } from "types/props";
 import {
     getFormattedDuration
 } from "@/utils/dateUtils";
+import { PATHS } from "assets/constants/paths";
 
 const route = useRoute();
 
@@ -28,7 +29,7 @@ const currentItem = computed<SkillDataItem>(() => skillData.value?.find(skill =>
 
 const workItems = getWorkItemsWithParticularSkill(currentItem.value, workData.value ?? []);
 
-const usedInArray: string[] = [ ...new Set(workItems.map(workItem => workItem.title))];
+const usedInArray: InteractiveListItem[] = [ ...new Set(workItems.map(workItem => ({title: workItem.title, href: `${PATHS.about.work}/${workItem.id}`})))];
 
 const title = currentItem.value.skill.displayName;
 

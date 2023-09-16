@@ -3,6 +3,11 @@ export interface NavigationMenuItem {
   icon: string;
 }
 
+export interface InteractiveListItem {
+  title: string;
+  href?: string;
+}
+
 export interface HobbyDataItem {
   id: string;
   title: string;

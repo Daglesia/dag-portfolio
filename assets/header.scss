@@ -1,12 +1,19 @@
 $header-size: 5rem;
 $subheader-size: 4rem;
+$bottom-label-size: 2rem;
 
 #header-component {
   height: $header-size;
   position: relative;
 }
 
-#header-component > #span-container {
+#span-container-bottom {
+  height: $bottom-label-size;
+  font-size: small;
+  margin-top: 0.5rem;
+}
+
+#header-component > #span-container, #header-component > #span-container-bottom {
   position: relative;
   overflow: hidden;
 }
@@ -46,7 +53,6 @@ $subheader-size: 4rem;
 
 #header-component[data-primary="true"] > #span-container > span {
   font-size: $header-size;
-  padding-block: 0.5rem;
   color: $color-lightblue-1;
   line-height: 80%;
 }
@@ -57,14 +63,33 @@ $subheader-size: 4rem;
   line-height: 90%;
 }
 
-#header-component > #span-container > span {
+#header-component[data-primary="true"] > #span-container-bottom > span {
+  font-size: $bottom-label-size;
+  color: $color-lightblue-1;
+  line-height: 80%;
+}
+
+#header-component[data-primary="false"] > #span-container-bottom > span {
+  font-size: $bottom-label-size;
+  color: $color-darkblue-1;
+  line-height: 90%;
+}
+
+#header-component > #span-container > span, #header-component > #span-container-bottom > span{
   width: 100%;
   font-weight: bold;
-  padding-inline: 0.7rem;
 
   position: absolute;
 }
 
-#header-component > #span-container > .centered {
+#header-component > #span-container:not(.centered), #header-component > #span-container-bottom:not(.centered) {
+  padding-inline: 0.7rem;
+}
+
+#header-component > #span-container > .centered, #header-component > #span-container-bottom > .centered {
   text-align: center;
+}
+
+#header-component > #span-container > .concise, #header-component > #span-container-bottom > .concise {
+  padding-block: 0.5rem;
 }

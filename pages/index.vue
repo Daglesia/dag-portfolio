@@ -1,19 +1,19 @@
 <template>
   <div id="main-menu">
-  <header-component primary centered title="Title screen" />
-  <div id="menu-links">
-    <div id="a-container">
-      <NuxtLink to="/about/">
-    Cyckckckck
-  </NuxtLink>
+    <header-component primary centered title="Magdalena" secondary-text="Frontend developer" />
+    <div id="menu-links">
+      <div id="a-container">
+        <NuxtLink to="/about/">
+          About
+        </NuxtLink>
+      </div>
+      <div id="a-container">
+        <NuxtLink to="/contact/">
+          Contact
+        </NuxtLink>
+      </div>
+    </div>
   </div>
-  <div id="a-container">
-    <NuxtLink to="/about/">
-      Cyckckckck
-    </NuxtLink>
-  </div>
-  </div>
-</div>
 </template>
 
 <script setup lang="ts">
@@ -53,12 +53,11 @@ definePageMeta({
   cursor: pointer;
 }
 
-#a-container > a {
+#a-container>a {
   transition: color 0.4s;
 }
 
-#a-container > a:hover {
+#a-container>a:hover {
   color: $color-lightblue-1;
 }
-
 </style>

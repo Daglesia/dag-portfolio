@@ -1,6 +1,6 @@
 <template>
   <div id="about-view">
-    <header-component primary title="About" />
+    <header-component primary title="About" concise />
     <icon-navigation
       :modelValue="activeElement"
       @update:modelValue="handleActiveElementChange"

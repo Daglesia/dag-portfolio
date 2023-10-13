@@ -2,12 +2,12 @@
   <div id="main-menu">
     <header-component primary centered title="Magdalena" secondary-text="Frontend developer" />
     <div id="menu-links">
-      <div id="a-container">
+      <div id="a-container" :style="{ 'animation-delay': '100ms' }">
         <NuxtLink to="/about/">
           About
         </NuxtLink>
       </div>
-      <div id="a-container">
+      <div id="a-container" :style="{ 'animation-delay': '200ms' }">
         <NuxtLink to="/contact/">
           Contact
         </NuxtLink>
@@ -37,6 +37,14 @@ definePageMeta({
 #menu-links {
   align-self: start;
   padding: 5rem;
+}
+
+#menu-links > div {
+  color: $color-lightblue-1;
+}
+
+#menu-links:hover > div {
+  color: $color-darkblue-1;
 }
 
 #header-component {

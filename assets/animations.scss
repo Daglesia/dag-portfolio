@@ -54,3 +54,8 @@
   opacity: 0;
   animation: hr-vertical 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
+
+#menu-links>div {
+  opacity: 0;
+  animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}

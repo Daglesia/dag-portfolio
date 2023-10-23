@@ -149,17 +149,106 @@
   opacity: 1;
 }
 
-.input-border {
-  box-shadow: -5px 10px 2px -7px #57abc9;
+.pill-input>.input {
+  width: 100%;
+  margin-left: 1.5rem;
+  margin-right: 0.8rem;
 }
 
-.input {
+.pill-input>.input>input {
   color: $color-lightblue-1;
   display: block;
-  height: 4rem;
   background: none;
   border: none;
   outline: none;
   font-weight: bold;
   font-size: 2rem;
+  padding: 0;
+  margin-bottom: 0.1rem;
+
+  width: 100%;
+}
+
+.pill-input>.input>hr {
+  border: 0.15rem $color-lightblue-1 solid;
+  margin: 0;
+  border-radius: 3rem;
+}
+
+.pill-input {
+  color: $color-lightblue-1;
+  background: rgba(109, 215, 253, 0.1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 2.5rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 7rem;
+
+  transition: background 0.41s ease;
+  cursor: text;
+}
+
+.pill-input.active {
+  background: rgba(109, 215, 253, 0.25);
+}
+
+.pill-slot-input {
+  font-weight: bold;
+  color: $color-lightblue-1;
+
+  opacity: 0.5;
+  transition: opacity ease 0.4s;
+  text-align: right;
+  font-size: 2.5rem;
+
+  width: 100%;
+  margin-left: 1.2rem;
+}
+
+.pill-input>.icon {
+  display: flex;
+  font-size: 5rem;
+  padding-right: 1.2rem;
+}
+
+.text-big {
+  color: $color-lightblue-1;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.pill-textarea {
+  color: $color-lightblue-1;
+  background: rgba(109, 215, 253, 0.1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 2.5rem;
+  padding:1.2rem;
+  padding-bottom: 3rem;
+
+  transition: background 0.41s ease;
+  cursor: text;
+}
+
+.pill-textarea.active {
+  background: rgba(109, 215, 253, 0.25);
+}
+
+.pill-textarea > textarea {
+  resize: none;
+
+  color: $color-lightblue-1;
+  display: block;
+  overflow: hidden;
+  background: none;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  font-size: 2rem;
+  padding: 0;
+  margin:0;
+
+  height: 100%;
+  width: 100%;
 }

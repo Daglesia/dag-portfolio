@@ -1,5 +1,5 @@
 <template>
-  <div id="work-description">
+  <div class="flex-column">
     <header-component :title="title" />
     <div id="work-pills">
       <pill-component icon="fa6-solid:clock">
@@ -58,11 +58,6 @@ const timeframe = getFormattedStartEndFrame(
 </script>
 
 <style lang="scss" scoped>
-#work-description {
-  padding-inline: 4rem;
-  padding-top: 1.4rem;
-}
-
 #work-pills {
   padding-top: 1rem;
   display: flex;

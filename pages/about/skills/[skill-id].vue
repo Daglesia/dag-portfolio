@@ -1,5 +1,5 @@
 <template>
-    <div id="skill-description">
+    <div class="flex-column">
         <header-component :title="title" />
         <div id="skill-pills">
             <pill-component icon="fa6-solid:clock" :style="{ 'animation-delay': '100ms' }">
@@ -41,11 +41,6 @@ const duration = getFormattedDuration(
 </script>
   
 <style lang="scss" scoped>
-#skill-description {
-    padding-inline: 4rem;
-    padding-top: 1.4rem;
-}
-
 #skill-pills {
     padding-top: 1rem;
     display: flex;

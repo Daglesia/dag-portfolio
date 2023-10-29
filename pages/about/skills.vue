@@ -1,13 +1,15 @@
 <template>
-  <div id="skill-page">
-    <div id="skill-selector">
-      <header-component title="Skills" />
-      <padded-icon-group v-model="activeElement" :items="icons" />
-    </div>
-    <div id="skill-selected">
-      <NuxtPage />
-    </div>
-  </div>
+  <two-sided-component>
+    <template #left>
+      <div class="flex-column">
+        <header-component title="Skills" />
+        <padded-icon-group v-model="activeElement" :items="icons" />
+      </div>
+    </template>
+    <template #right>
+      <NuxtPage/>
+    </template>
+  </two-sided-component>
 </template>
 
 <script setup lang="ts">
@@ -37,19 +39,6 @@ watch(activeElement, (newValue) => {
 </script>
 
 <style lang="scss" scoped>
-#skill-page {
-  padding-left: 2rem;
-  display: flex;
-}
-
-#skill-selector {
-  width: 40vw;
-}
-
-#skill-selected {
-  width: 40vw;
-}
-
 #header-component {
   padding-top: 1.5rem;
 }

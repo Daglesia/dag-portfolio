@@ -1,14 +1,16 @@
 <template>
-  <div id="pill" :class="{
-    centered: isSingleItem,
-    active: active,
-    interactive: interactive,
+  <div class="pill animation--slide-up animation--initial-blank" :class="{
+    'pill--centered': isSingleItem,
+    'pill--active': active,
+    'pill--interactive': interactive,
   }">
-    <div id="pill-slot" :class="{ icon: !!icon }">
+    <div class="pill__slot" :class="{ 'pill__icon': !!icon }">
       <IconCSS v-if="icon" :name="icon" />
-      <slot v-else />
+      <div v-else class="pill__text">
+        <slot />
+      </div>
     </div>
-    <div id="pill-slot" class="smallerText" v-if="icon || !isSingleItem">
+    <div class="pill__slot pill--smallerText" v-if="icon || !isSingleItem">
       <slot :name="icon ? 'default' : 'right'" />
     </div>
   </div>

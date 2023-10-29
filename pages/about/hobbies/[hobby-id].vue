@@ -1,5 +1,5 @@
 <template>
-    <div id="hobby-description">
+    <div class="flex-column">
       <header-component :title="currentItem.title" />
       <list-component :delay-ms="100" :title="currentItem.subtitle" :items="listItems" />
     </div>
@@ -18,27 +18,10 @@ const listItems = computed<InteractiveListItem[]>(() => currentItem.value.items.
 </script>
   
   <style lang="scss" scoped>
-  #hobby-description {
-    padding-inline: 4rem;
-    padding-top: 1.4rem;
-  }
-  
-  #hobby-pills {
-    padding-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  #padded-icon-group {
-    display: flex;
-    justify-content: left;
-    gap: 1rem;
-  }
-
-  
-#list-component {
-    padding-left: 1rem;
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
   </style>
   

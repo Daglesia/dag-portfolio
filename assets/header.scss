@@ -1,95 +1,85 @@
-$header-size: 5rem;
-$subheader-size: 4rem;
+$header-font-size: 5rem;
+$subheader-font-size: 4rem;
 $bottom-label-size: 2rem;
 
-#header-component {
-  height: $header-size;
+%hr-default-container {
+  width: 100%;
+
+  hr {
+    border: none;
+    border-radius: 4px;
+    margin-block: 0;
+    width: 100%;
+  }
+}
+
+%default-span {
+  padding-inline: 0.5rem;
   position: relative;
+  display: inherit;
 }
 
-#span-container-bottom {
-  height: $bottom-label-size;
-  font-size: small;
-  margin-top: 0.5rem;
-}
+$primary-color: $color-lightblue-1;
+$secondary-color: $color-darkblue-1;
 
-#header-component > #span-container, #header-component > #span-container-bottom {
+.header-component {
   position: relative;
-  overflow: hidden;
-}
-
-#header-component[data-primary="true"] > #span-container {
-  height: $header-size;
-}
-
-#header-component[data-primary="false"] > #span-container {
-  height: $subheader-size;
-}
-
-#header-component > #hr-container {
   display: flex;
+  flex-direction: column;
   width: 100%;
 
-  justify-content: center;
-  align-items: center;
-}
-
-#header-component[data-primary="true"] > #hr-container > hr {
-  padding: 4px 0;
-  background-color: $color-lightblue-1;
-}
-
-#header-component[data-primary="false"] > #hr-container > hr {
-  padding: 3px 0;
-  background-color: $color-darkblue-1;
-}
-
-#header-component > #hr-container > hr {
-  border: none;
-  border-radius: 4px;
-  margin-block: 0;
-  width: 100%;
-}
-
-#header-component[data-primary="true"] > #span-container > span {
-  font-size: $header-size;
-  color: $color-lightblue-1;
-  line-height: 80%;
-}
-
-#header-component[data-primary="false"] > #span-container > span {
-  font-size: $subheader-size;
-  color: $color-darkblue-1;
-  line-height: 90%;
-}
-
-#header-component[data-primary="true"] > #span-container-bottom > span {
-  font-size: $bottom-label-size;
-  color: $color-lightblue-1;
-  line-height: 80%;
-}
-
-#header-component[data-primary="false"] > #span-container-bottom > span {
-  font-size: $bottom-label-size;
-  color: $color-darkblue-1;
-  line-height: 90%;
-}
-
-#header-component > #span-container > span, #header-component > #span-container-bottom > span{
-  width: 100%;
   font-weight: bold;
 
-  position: absolute;
-}
+  &__primary {
+    color: $primary-color;
 
-#header-component > #span-container:not(.centered), #header-component > #span-container-bottom:not(.centered) {
-  padding-inline: 0.7rem;
-}
+    .span-container-top {
+      font-size: $header-font-size;
+      
+      span {
+        @extend %default-span;
+        height: calc($header-font-size + 0.8rem);
+      }
+    }
 
-#header-component > #span-container > .centered, #header-component > #span-container-bottom > .centered {
-  text-align: center;
-}
+    .hr-container {
+      @extend %hr-default-container;
 
-#header-component > #span-container > .concise, #header-component > #span-container-bottom > .concise {
-  padding-block: 0.5rem;
+      hr {
+        padding: 4px 0;
+        background-color: $primary-color;
+      }
+    }
+  }
+
+  &__secondary {
+    color: $secondary-color;
+
+    .span-container-top {
+      font-size: $subheader-font-size;
+      
+      span {
+        @extend %default-span;
+        height: calc($subheader-font-size + 0.7rem);
+      }
+    }
+
+    .hr-container {
+      @extend %hr-default-container;
+
+      hr {
+        padding: 3px 0;
+        background-color: $secondary-color;
+      }
+    }
+  }
+
+  &--centered {
+    place-items: center;
+  }
+
+  .span-container-bottom {
+    font-size: $bottom-label-size;
+    margin-top: 0.1em;
+  }
 }

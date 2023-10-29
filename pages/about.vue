@@ -1,6 +1,6 @@
 <template>
   <div id="about-view">
-    <header-component primary title="About" concise />
+    <header-component primary title="About" id="main-header"/>
     <icon-navigation
       :modelValue="activeElement"
       @update:modelValue="handleActiveElementChange"
@@ -56,18 +56,13 @@ onBeforeRouteUpdate((to: RouteLocationNormalized, _from: RouteLocationNormalized
 </script>
 
 <style lang="scss" scoped>
-#header-component {
-  width: 40vw;
-  padding: 2rem;
-  padding-bottom: 1rem;
-}
-
-#about-view {
-  margin-left: 1rem;
+.header-component {
+  width: 40%;
+  padding-top: 1rem;
 }
 
 #navigation {
-  padding-left: 2rem;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
 }
 </style>

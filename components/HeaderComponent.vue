@@ -1,13 +1,15 @@
 <template>
-  <header id="header-component" :data-primary="primary">
-    <div id="span-container">
-        <span :class="{ centered, concise }">{{ title }}</span>
+  <header :class="`header-component header-component__${primary ? 'primary' : 'secondary'} ${centered ? 'header-component--centered' : ''}`">
+    <div class="span-container-top animation--slide-up">
+        <span :class="{ centered }" >{{ title }}</span>
     </div>
-    <div id="hr-container">
-      <hr :data-primary="primary">
+    <div class="hr-container">
+      <hr class="animation--span-out" :data-primary="primary">
     </div>
-    <div id="span-container-bottom" v-if="secondaryText">
-      <span :class="{ centered, concise }"> {{secondaryText}} </span>
+    <div class="overflow-hidden">
+      <div class="span-container-bottom animation--slide-down" v-if="secondaryText">
+        <span :class="{ centered }" > {{secondaryText}} </span>
+      </div>
     </div>
   </header>
 </template>
@@ -17,11 +19,15 @@ defineProps<{
   title: string;
   primary?: boolean;
   centered?: boolean;
-  concise?: boolean;
   secondaryText?: string;
 }>();
 </script>
 
 <style scoped lang="scss">
 @import "@/assets/header.scss";
+@import "@/assets/animations.scss";
+
+.overflow-hidden {
+  overflow: hidden;
+}
 </style>

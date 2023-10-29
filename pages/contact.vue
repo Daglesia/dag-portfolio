@@ -1,6 +1,6 @@
 <template>
   <div id="contact-page">
-    <header-component primary title="Contact" concise />
+    <header-component primary title="Contact" />
     <div id="contact-form">
       <div id="contact-lines">
         <pill-input type="name" label="Name" :style="{ 'animation-delay': '100ms' }"/>

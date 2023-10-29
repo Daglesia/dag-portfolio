@@ -1,13 +1,15 @@
 <template>
-  <div id="work-page">
-    <div id="work-selector">
-      <header-component title="Work experience" />
-      <pill-group v-model="activeElement" :items="pillGroups" />
-    </div>
-    <div id="work-selected">
+  <two-sided-component>
+    <template #left>
+      <div class="flex-column">
+        <header-component title="Work experience" />
+        <pill-group v-model="activeElement" :items="pillGroups" />
+      </div>
+    </template>
+    <template #right>
       <NuxtPage/>
-    </div>
-  </div>
+    </template>
+  </two-sided-component>
 </template>
 
 <script setup lang="ts">
@@ -52,14 +54,6 @@ watch(activeElement, (newValue) => {
 #work-page {
   padding-left: 2rem;
   display: flex;
-}
-
-#work-selector {
-  width: 40vw;
-}
-
-#work-selected {
-  width: 40vw;
 }
 
 #header-component {

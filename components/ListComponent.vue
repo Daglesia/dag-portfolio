@@ -1,18 +1,18 @@
 <template>
-  <div id="list-component">
-      <p v-if="title" :style="{animationDelay: `${delayMs ?? 0}ms`}">
+  <div class="vertical-list">
+      <p v-if="title" class="vertical-list__title animation--slide-up animation--initial-blank" :style="{animationDelay: `${delayMs ?? 0}ms`}">
         {{ title }}
       </p>
-      <ul>
-          <li v-for="item, index in items" :key="index" :style="{ 'animation-delay': delayInMilliseconds(index)}">
-            <nuxt-link v-if="item.href" :to="item.href" class="interactive">
+      <ul class="vertical-list__list">
+          <li v-for="item, index in items" :key="index" class="vertical-list__item animation--slide-up animation--initial-blank" :style="{ 'animation-delay': delayInMilliseconds(index)}">
+            <nuxt-link v-if="item.href" :to="item.href" class="vertical-list__item--interactive">
               {{ item.title }}
             </nuxt-link>
             <div v-else>
               {{ item.title }}
             </div>
           </li>
-          <hr :style="{animationDelay: `${delayMs ?? 0}ms`}">
+          <hr class="vertical-list__line animation--vertical-line animation--initial-blank" :style="{animationDelay: `${delayMs ?? 0}ms`}">
       </ul>
   </div>
 </template>

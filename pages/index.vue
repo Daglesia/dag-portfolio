@@ -47,7 +47,7 @@ definePageMeta({
   color: $color-darkblue-1;
 }
 
-#header-component {
+.header-component {
   width: 80%;
   padding: 2rem;
   padding-bottom: 1rem;

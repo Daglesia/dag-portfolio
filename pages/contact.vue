@@ -1,13 +1,13 @@
 <template>
-  <div id="contact-page">
+  <div>
     <header-component primary title="Contact" />
-    <div id="contact-form">
-      <div id="contact-lines">
+    <div class="contact-form">
+      <div class="contact-form__input-group">
         <pill-input type="name" label="Name" :style="{ 'animation-delay': '100ms' }"/>
         <pill-input type="email" label="Email" :style="{ 'animation-delay': '200ms' }"/>
       </div>
       <message-field label="Message" :style="{ 'animation-delay': '300ms' }"/>
-      <button id="pill">Send</button>
+      <pill-button class="contact-form__submit-button">Send</pill-button>
     </div>
   </div>
 </template>
@@ -26,28 +26,28 @@ definePageMeta({
 
 <style lang="scss" scoped>
 @import "@/assets/components.scss";
-#contact-page {
-  padding-left: 2rem;
-  display: flex;
-  flex-direction: column;
-}
-
-#contact-form {
-  display: flex;
-  flex-direction: column;
-  width: 80vw;
+.header-component {
+  width: 40%;
   padding-top: 1rem;
-  height: 80vh;
 }
 
-#contact-lines {
+.contact-form {
   display: flex;
-  gap: 2rem;
-  flex-direction: row;
-}
+  flex-direction: column;
+  width: 100%;
+  padding-top: 1rem;
+  height: 100%;
 
-#header-component {
-  padding-top: 1.9rem;
-  width: 40vw;
+  &__input-group {
+    display: flex;
+    gap: 2rem;
+    flex-direction: row;
+  }
+
+  &__submit-button {
+    margin-top: 4rem;
+    width: 40%;
+    place-self: center;
+  }
 }
 </style>

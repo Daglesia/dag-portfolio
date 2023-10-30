@@ -1,4 +1,4 @@
-.pill {
+%pill-default-settings {
   background: $color-background-2;
   box-shadow: 0px 4px 4px $color-shadow;
   border-radius: 2.5rem;
@@ -7,13 +7,17 @@
   justify-content: space-between;
   align-items: center;
   height: 7rem;
+}
+
+.pill {
+  @extend %pill-default-settings;
 
   .pill__slot {
     opacity: 1;
     color: $color-darkblue-1;
     font-weight: bold;
 
-    transition: opacity ease 1s;
+    transition: opacity ease 1s !important;
     text-align: right;
   }
 
@@ -54,12 +58,12 @@
 
   &--active {
     .pill__slot {
-      opacity: 1;
+      opacity: 1 !important;
       color: $color-lightblue-1;
     }
 
     .pill__slot:hover {
-      opacity: 1;
+      opacity: 1 !important;
     }
   }
 }
@@ -67,6 +71,7 @@
 .vertical-list {
   color: $color-darkblue-1;
   font-weight: bold;
+  cursor: default;
 
   &__title {
     font-size: 3.5rem;
@@ -96,6 +101,16 @@
     height: 100%;
     border: 2px solid $color-darkblue-1;
     border-radius: 100px;
+  }
+
+  &__item--interactive {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity ease 0.4s;
+  }
+
+  &__item--interactive:hover {
+    opacity: 1 !important;
   }
 }
 
@@ -141,136 +156,174 @@
   }
 }
 
-#padded-icon {
+.padded-icon {
   color: $color-lightblue-1;
-  background: rgba(109, 215, 253, 0.1);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: $color-background-2;
+  box-shadow: 0px 4px 4px $color-shadow;
   padding: 1rem;
-  height: 5rem;
-  width: 5rem;
+  min-height: 5rem;
+  aspect-ratio: 1/1;
   display: flex;
   border-radius: 1.5rem;
-}
 
-#padded-icon > span {
-  height: 100% !important;
-  width: 100% !important;
-  opacity: 0.5;
-  transition: opacity 0.4s;
-}
+  &__icon {
+    height: 100% !important;
+    width: 100% !important;
+    opacity: 0.5;
+    transition: opacity 0.4s;
+  }
 
-#padded-icon.interactive:not(.active):hover > span {
-  opacity: 0.7;
-}
+  &--interactive {
+    cursor: pointer;
+  }
 
-#padded-icon.interactive {
-  cursor: pointer;
-}
+  &--interactive:hover:not(.padded-icon--active) {
+    .padded-icon__icon {
+      opacity: 0.7;
+    }
+  }
 
-#padded-icon.active > span {
-  opacity: 1;
-}
-
-.pill-input>.input {
-  width: 100%;
-  margin-left: 1.5rem;
-  margin-right: 0.8rem;
-}
-
-.pill-input>.input>input {
-  color: $color-lightblue-1;
-  display: block;
-  background: none;
-  border: none;
-  outline: none;
-  font-weight: bold;
-  font-size: 2rem;
-  padding: 0;
-  margin-bottom: 0.1rem;
-
-  width: 100%;
-}
-
-.pill-input>.input>hr {
-  border: 0.15rem $color-lightblue-1 solid;
-  margin: 0;
-  border-radius: 3rem;
+  &--active {
+    .padded-icon__icon {
+      opacity: 1;
+    }
+  }
 }
 
 .pill-input {
-  color: $color-lightblue-1;
-  background: rgba(109, 215, 253, 0.1);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 2.5rem;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 7rem;
-
-  transition: background 0.41s ease;
   cursor: text;
-}
-
-.pill-input.active {
-  background: rgba(109, 215, 253, 0.25);
-}
-
-.pill-slot-input {
-  font-weight: bold;
   color: $color-lightblue-1;
 
-  opacity: 0.5;
-  transition: opacity ease 0.4s;
-  text-align: right;
-  font-size: 2.5rem;
+  &__pill {
+    @extend %pill-default-settings;
+    transition: background 0.41s ease;
+  }
 
-  width: 100%;
-  margin-left: 1.2rem;
-}
+  &__pill--active {
+    background: $color-background-3 !important;
+  }
 
-.pill-input>.icon {
-  display: flex;
-  font-size: 5rem;
-  padding-right: 1.2rem;
-}
+  &__label {
+    color: $color-lightblue-1;
+    font-size: 4rem;
+    font-weight: bold;
+  }
 
-.text-big {
-  color: $color-lightblue-1;
-  font-size: 4rem;
-  font-weight: bold;
+  &__input-wrapper {
+    width: 100%;
+    margin-left: 1.5rem;
+    margin-right: 0.8rem;
+  }
+
+  &__input {
+    color: $color-lightblue-1;
+    display: block;
+    background: none;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    font-size: 2rem;
+    padding: 0;
+    margin-bottom: 0.1rem;
+  
+    width: 100%;
+  }
+
+  &__line {
+    border: 0.15rem $color-lightblue-1 solid;
+    margin: 0;
+    margin-top: 0.1rem;
+    border-radius: 3rem;
+  }
+
+  &__icon-wrapper {
+    display: flex;
+    font-size: 5rem;
+    padding-right: 1.2rem;
+  }
 }
 
 .pill-textarea {
   color: $color-lightblue-1;
-  background: rgba(109, 215, 253, 0.1);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 2.5rem;
-  padding:1.2rem;
-  padding-bottom: 3rem;
-
-  transition: background 0.41s ease;
   cursor: text;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+
+  &__pill {
+    cursor: text;
+    background: $color-background-2;
+    border-radius: 2.5rem;
+    padding:1.2rem;
+    padding-bottom: 3rem;
+  
+    transition: background 0.41s ease;
+    position: relative;
+  }
+
+  &__pill--active {
+    background: $color-background-3;
+  }
+
+  &__label {
+    padding-left: 1.2rem;
+    color: $color-lightblue-1;
+    font-size: 4rem;
+    font-weight: bold;
+  }
+
+  &__textarea {
+    resize: none;
+
+    color: $color-lightblue-1;
+    display: block;
+    overflow: hidden;
+    background: none;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    font-size: 2rem;
+    padding: 0;
+    margin:0;
+  
+    height: 100%;
+    width: 100%;
+  }
+
+  &__footnote {
+    position: absolute;
+    bottom: 1rem;
+    right: 2.4rem;
+  
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
 }
 
-.pill-textarea.active {
-  background: rgba(109, 215, 253, 0.25);
-}
+.pill-button {
+  &__pill {
+    @extend %pill-default-settings;
 
-.pill-textarea > textarea {
-  resize: none;
+    border: 3px solid $color-darkblue-1;
+    transition: background-color 0.41s ease;
+  }
 
-  color: $color-lightblue-1;
-  display: block;
-  overflow: hidden;
-  background: none;
-  border: none;
-  outline: none;
-  font-weight: bold;
-  font-size: 2rem;
-  padding: 0;
-  margin:0;
+  &__pill:hover {
+    background-color: $color-background-3;
+  }
 
-  height: 100%;
-  width: 100%;
+  &__button {
+    color: $color-lightblue-1;
+
+    background: none;
+    padding: 0;
+    border: none;
+    height: 100%;
+    width: 100%;
+
+    font-size: 2.5rem;
+    font-weight: bold;
+
+    cursor: pointer;
+  }
 }

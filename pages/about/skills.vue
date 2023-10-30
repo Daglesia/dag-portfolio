@@ -43,7 +43,7 @@ watch(activeElement, (newValue) => {
   padding-top: 1.5rem;
 }
 
-#padded-icon-group {
+.padded-icon-group {
   padding-top: 1rem;
 }
 </style>

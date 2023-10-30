@@ -1,6 +1,6 @@
 <template>
-  <div id="padded-icon" :class="{ interactive: interactive, active: active }">
-    <IconCSS :name="icon" />
+  <div class="padded-icon animation--slide-up animation--initial-blank" :class="{ 'padded-icon--interactive': interactive, 'padded-icon--active': active }">
+    <IconCSS class="padded-icon__icon" :name="icon" />
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div id="about-view">
+  <div>
     <header-component primary title="About" id="main-header"/>
     <icon-navigation
       :modelValue="activeElement"
@@ -61,7 +61,7 @@ onBeforeRouteUpdate((to: RouteLocationNormalized, _from: RouteLocationNormalized
   padding-top: 1rem;
 }
 
-#navigation {
+.navigation {
   padding-top: 1rem;
   margin-bottom: 1rem;
 }

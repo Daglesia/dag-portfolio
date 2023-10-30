@@ -1,44 +1,75 @@
 $nav-height: 4.5rem;
 $border-size: 3px;
 
-#navigation {
-  width: fit-content;
-  height: calc(100% + 4px);
-  margin-bottom: 4px;
+.navigation {
+  &__wrapper {
+    width: fit-content;
+    height: calc(100% + 4px);
+    margin-bottom: 4px; 
+  }
+
+  &__nav {
+    color: $color-lightblue-1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  &__item {
+    height: $nav-height;
+    aspect-ratio: 1/1;
+    padding-inline: 0.4rem;
+    opacity: 0.5;
+    transition: opacity 0.5s ease-out;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item--active {
+    opacity: 1 !important;
+  }
+
+  &__item:hover:not(.navigation__item--active) {
+    opacity: 0.7;
+  }
+
+  &__icon {
+    fill: $color-lightblue-1;
+    height: 90% !important;
+    width: 90% !important;
+    aspect-ratio: 1/1 !important;
+  }
+
+  &__underline-group {
+    width: 100%;
+    position: relative;
+  }
+
+  &__underline {
+    margin: 0;
+    border-radius: 5px;
+    position: absolute;
+    box-sizing: border-box;
+    border: $border-size solid $color-darkblue-1;
+    width: 100%;
+    opacity: 0.7;
+  }
+
+  &__underline--active {
+    border: $border-size solid $color-lightblue-1 !important;
+    transition: all 0.3s ease-out;
+    z-index: 50;
+    opacity: 1 !important;
+  
+    position: absolute;
+  }
+
+  &__underline--delayed {
+    transition: all 0.4s ease-in-out !important;
+  }
 }
 
-nav {
-  color: #6dd7fd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-nav > div {
-  height: $nav-height;
-  aspect-ratio: 1/1;
-  padding-inline: 0.4rem;
-  opacity: 0.5;
-  transition: opacity 0.5s ease-out;
-  display: flex;
-  justify-content: center;
-}
-
-nav > :hover {
-  opacity: 0.7;
-}
-
-nav > .active {
-  opacity: 1;
-}
-
-nav > div > span {
-  fill: $color-lightblue-1;
-  height: 90% !important;
-  width: 90% !important;
-  aspect-ratio: 1/1 !important;
-}
 
 .underlines {
   width: 100%;

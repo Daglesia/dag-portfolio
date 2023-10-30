@@ -1,20 +1,21 @@
 <template>
-    <div id="navigation">
-      <nav>
+    <div class="navigation navigation__wrapper animation--slide-up-short">
+      <nav class="navigation__nav">
         <div
           v-for="(item, index) in menuItems"
           :key="index"
           ref="startingPoint"
-          :class="{ active: modelValue === index }"
+          class="navigation__item"
+          :class="{ 'navigation__item--active': modelValue === index }"
           @click="(event) => handleClick(event, index)"
         >
-          <IconCSS :name="item.icon" />
+          <IconCSS class="navigation__icon" :name="item.icon" />
         </div>
       </nav>
-      <div class="underlines">
-        <hr>
-        <hr class="active">
-        <hr class="active delayed">
+      <div class="navigation__underline-group">
+        <hr class="navigation__underline">
+        <hr class="navigation__underline navigation__underline--active">
+        <hr class="navigation__underline navigation__underline--active navigation__underline--delayed">
       </div>
     </div>
 </template>
@@ -72,7 +73,7 @@ const handleClick = (event: MouseEvent, index: number) => {
 <style scoped lang="scss">
 @import "@/assets/navigation";
 
-.underlines > .active {
+.navigation__underline--active {
   left: v-bind(left);
   width: v-bind(width);
 }

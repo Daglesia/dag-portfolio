@@ -1,21 +1,27 @@
+$basic-animation-curve: cubic-bezier(0.36, 0.07, 0.19, 0.97);
+
 .layout-leave-active {
-  animation: blur-out 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: blur-out 0.4s $basic-animation-curve forwards;
 }
 
 .layout-enter-active {
-  animation: 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: 1s $basic-animation-curve forwards;
 }
 
 .animation--span-out {
-  animation: span-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: span-out 0.82s $basic-animation-curve forwards;
 }
 
 .animation--slide-up {
-  animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-up-low 1s $basic-animation-curve forwards;
+}
+
+.animation--slide-up-short {
+  animation: slide-up-low 0.82s $basic-animation-curve forwards;
 }
 
 .animation--slide-down {
-  animation: slide-down 1.1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-down 1.1s $basic-animation-curve forwards;
 }
 
 .animation--initial-blank {
@@ -23,56 +29,56 @@
 }
 
 .animation--vertical-line {
-  animation: hr-vertical 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: hr-vertical 1s $basic-animation-curve forwards;
 }
 
 #span-container>span {
-  animation: slide-up 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-up 1s $basic-animation-curve forwards;
 }
 
 #span-container-bottom>span {
-  animation: slide-down 1.1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-down 1.1s $basic-animation-curve forwards;
 }
 
 #hr-container>hr {
-  animation: span-out 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: span-out 0.82s $basic-animation-curve forwards;
 }
 
 #navigation {
-  animation: slide-up-low 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-up-low 0.82s $basic-animation-curve forwards;
 }
 
 #pill {
   opacity: 0;
-  animation: slide-up-low 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-up-low 0.82s $basic-animation-curve forwards;
 }
 
 #padded-icon {
   opacity: 0;
-  animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-up-low 1s $basic-animation-curve forwards;
 }
 
 #list-component>p {
   opacity: 0;
-  animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-up-low 1s $basic-animation-curve forwards;
 }
 
 #list-component>ul>li {
   opacity: 0;
-  animation: slide-up-low-2 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-up-low-2 1s $basic-animation-curve forwards;
 }
 
 #list-component>ul>hr {
   opacity: 0;
-  animation: hr-vertical 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: hr-vertical 1s $basic-animation-curve forwards;
 }
 
 #menu-links>div {
   opacity: 0;
-  animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-up-low 1s $basic-animation-curve forwards;
 }
 
 .slide-low {
   opacity: 0;
-  animation: slide-up-low 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  animation: slide-up-low 1s $basic-animation-curve forwards;
 }

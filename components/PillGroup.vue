@@ -1,5 +1,5 @@
 <template>
-  <div id="pill-group">
+  <div class="pill-group">
       <pill-component
         v-for="(item, index) in items"
         :key="index"
@@ -38,18 +38,18 @@ const activeElementHandler = (index: number) => {
 </script>
 
 <style lang="scss" scoped>
-#pill-group {
+.pill-group {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding-top: 1rem;
 }
 
-#pill {
+.pill {
   cursor: pointer;
-}
 
-#pill:hover {
-  opacity: 1;
+  :hover {
+    opacity: 1;
+  }
 }
 </style>

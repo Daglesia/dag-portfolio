@@ -31,14 +31,4 @@ const delayInMilliseconds = (index: number) => props.delayMs ? `${100 * index + 
 
 <style lang="scss" scoped>
 @import "@/assets/components.scss";
-
-.interactive {
-  cursor: pointer;
-  opacity: 0.8;
-  transition: opacity ease 0.4s;
-}
-
-.interactive:hover {
-  opacity: 1;
-}
 </style>

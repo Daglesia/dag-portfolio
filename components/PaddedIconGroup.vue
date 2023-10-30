@@ -1,6 +1,6 @@
 <!-- eslint-disable no-undef -->
 <template>
-  <div id="padded-icon-group">
+  <div class="padded-icon-group">
     <padded-icon v-for="(item, index) in items" :key="index" interactive :active="modelValue === index"
       :style="{ 'animation-delay': delayInMilliseconds(index) }" @click="() => activeElementHandler(Number(index))"
       :icon="item">
@@ -25,7 +25,7 @@ const activeElementHandler = (index: number) => {
 </script>
 
 <style lang="scss">
-#padded-icon-group {
+.padded-icon-group {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;

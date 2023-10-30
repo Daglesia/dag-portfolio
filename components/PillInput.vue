@@ -1,13 +1,13 @@
 <template>
-  <div class="slide-low input-component" @click="focusIn" v-click-outside="focusOut">
-    <label :for="type" class="text-big">{{ label }}</label>
-    <div class="pill-input" :class="{ active: !!inputFocused }">
-      <div class="input">
-        <input @focusin="inputFocused = true" @focusout="focusOut" :type="type" ref="inputComponent" :id="type"/>
-        <hr />
+  <div class="pill-input" @click="focusIn" v-click-outside="focusOut">
+    <label :for="type" class="pill-input__label">{{ label }}</label>
+    <div class="pill-input__pill" :class="{ 'pill-input__pill--active': !!inputFocused }">
+      <div class="pill-input__input-wrapper">
+        <input class="pill-input__input" @focusin="inputFocused = true" @focusout="focusOut" :type="type" ref="inputComponent" :id="type"/>
+        <hr class="pill-input__line" />
       </div>
-      <div class="icon">
-        <IconCSS :name="iconName" />
+      <div class="pill-input__icon-wrapper">
+        <IconCSS class="pill-input__icon" :name="iconName" />
       </div>
     </div>
   </div>
@@ -41,11 +41,12 @@ const iconName = props.type === "email" ? "fa6-solid:envelope" : "fa6-solid:circ
 <style lang="scss" scoped>
 @import "@/assets/components.scss";
 
-.text-big {
+.pill-input__label {
   padding-left: 1.2rem;
+  width: fit-content;
 }
 
-.input-component {
+.pill-input {
   width: 100%;
 }
 </style>
